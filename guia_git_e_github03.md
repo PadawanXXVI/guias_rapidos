@@ -267,6 +267,53 @@ Esse commit **não é um commit comum** — ele representa a resolução do conf
 > Dica prática:  
 > Conflitos são normais. Eles não significam erro, apenas que duas pessoas mexeram no mesmo trecho de código.
 
+Observação:
+
+O que você faz na prática
+Abra o arquivo que está em conflito.
+
+Leia os dois blocos de código: o de cima (HEAD) e o de baixo (da branch que está sendo mesclada).
+
+Escolha o que deve permanecer:
+
+pode ficar só o código de cima,
+
+só o de baixo,
+
+ou uma combinação dos dois (às vezes você precisa juntar manualmente).
+
+Apague todas as marcações (<<<<<<<, =======, >>>>>>>).
+
+Salve o arquivo.
+
+Rode:
+
+Código
+```bash
+git add app.py # git add nome_do_arquivo modificado
+git commit
+```
+
+Exemplo simples
+
+Se o arquivo está assim:
+
+```bash
+<<<<<<< HEAD
+print("Olá")
+=======
+print("Hello")
+>>>>>>> feature-login
+```
+
+E você quer manter só “Olá”, você deixa:
+
+```bash
+print("Olá")
+```
+
+Pronto — isso é “resolver manualmente”.
+
 # 🗑️ 8. Deletar branches — `git branch -d`
 
 Depois que uma branch já foi **mesclada** (merge concluído), você pode removê-la com segurança:
