@@ -1,343 +1,427 @@
-# 📘 Guia 1 — Git Básico: Repositório Local (sem GitHub)
+# 📘 Guia 1 — Git Básico + Configurações
 
-Este guia é para quem está começando **do zero** com Git e quer entender, de forma prática e comentada, como funciona o **versionamento local** — ou seja, tudo que acontece **no seu computador**, sem envolver GitHub ainda.
-
-A ideia é: você termina este guia entendendo **o que é um repositório**, **como iniciar**, **como configurar**, **como salvar versões** e **como ver o estado do seu projeto**.
-
----
-
-## 🧠 1. O que é Git (em poucas palavras)
-
-Git é um **sistema de controle de versão**.
-
-Em vez de você ficar com:
-
-- `projeto_final_v1`
-- `projeto_final_v2`
-- `projeto_final_definitivo`
-- `projeto_final_definitivo_mesmo`
-
-Git guarda **o histórico de mudanças** dentro de uma pasta oculta chamada `.git`.
-
-Você não precisa criar cópias do projeto — o Git faz isso por você, de forma inteligente.
+Este guia ensina Git **do zero**, com explicações claras, exemplos reais e saídas do terminal comentadas.  
+Ideal para quem está começando e quer entender **o que está fazendo** em cada comando.
 
 ---
 
-## 📂 2. Iniciando um repositório — `git init`
+# 🧠 1. O que é Git (em poucas palavras)
 
-### Quando usar?
+Git é um **sistema de controle de versão distribuído**.  
+Ele registra o histórico completo do seu projeto e permite voltar no tempo, comparar versões e trabalhar com segurança — tudo isso **sem depender de internet**.
 
-Quando você tem uma pasta com arquivos (por exemplo, um projeto Python) e quer começar a versionar com Git.
-
-### Comando:
-
-```bash
-git init
-```
-
-### O que acontece?
-
-- Git cria uma pasta oculta chamada `.git` dentro da pasta atual.
-- Essa pasta guarda **todo o histórico**, **configurações** e **metadados** do repositório.
-
-### Como verificar?
-
-```bash
-ls -a
-```
-
-Você verá:
+Quando você usa Git em uma pasta, ele cria uma pasta oculta chamada:
 
 ```
 .git
 ```
 
-> **Importante:**  
-> Nunca mexa manualmente dentro da pasta `.git`.  
-> Ela é o “cérebro” do Git.
+Essa pasta transforma uma pasta comum em um **repositório Git** e guarda:
+
+- histórico de commits  
+- branches  
+- configurações  
+- referências internas  
+- metadados  
+- objetos compactados do Git  
+
+> **Nunca mexa manualmente dentro da pasta `.git`.**  
+> Ela é o “cérebro” do repositório — alterar algo ali pode corromper todo o histórico.
+
+Git funciona registrando **snapshots** (fotos) do estado do projeto a cada commit.  
+Ele não salva arquivos inteiros repetidamente — salva **apenas as diferenças**, o que o torna rápido e eficiente.
+
+**Analogia:**  
+Pense no Git como um “histórico infinito” do seu projeto, onde cada commit é uma foto do momento.
 
 ---
 
-## 🧾 3. Configurações do Git — `git config` (global e local)
+# ⚙️ 2. Configurações do Git — system, global e local
 
-Git precisa saber **quem é você**, para registrar seus commits com nome e e-mail.
+Git possui **3 níveis de configuração**, cada um armazenado em um arquivo diferente:
 
-### Configuração global (vale para todos os repositórios do seu usuário)
+| Nível | Afeta quem? | Arquivo onde fica |
+|------|-------------|-------------------|
+| **system** | todos os usuários da máquina | `/etc/gitconfig` |
+| **global** | apenas o usuário atual | `~/.gitconfig` |
+| **local** | apenas o repositório atual | `.git/config` |
+
+### ✔ Ordem de prioridade
+
+```
+local > global > system
+```
+
+> Se uma configuração existe no nível local, ela sobrescreve a global e a system.
+
+---
+
+## 🧾 2.1. Ver configurações
+
+### Ver todas as configurações ativas
+
+```bash
+git config --list
+```
+
+### Ver apenas as globais
+
+```bash
+git config --global --list
+```
+
+### Ver apenas as locais
+
+```bash
+git config --local --list
+```
+
+### Ver de onde vem cada configuração
+
+```bash
+git config --show-origin --list
+```
+
+Exemplo:
+
+```
+file:C:/Users/ander/.gitconfig   user.name=Anderson
+file:.git/config                 user.email=local@exemplo.com
+```
+
+---
+
+## 🧑‍💻 2.2. Definir nome e e-mail
+
+### Global (recomendado)
 
 ```bash
 git config --global user.name "Seu Nome"
 git config --global user.email "seu-email@exemplo.com"
 ```
 
-Isso grava seu nome e e-mail no arquivo de configuração global do Git.
-
-### Ver configurações globais:
+### Local (somente no repositório atual)
 
 ```bash
-git config --global --list
+git config user.name "Nome Local"
+git config user.email "email-local@exemplo.com"
 ```
-
-### Configuração local (vale só para o repositório atual)
-
-Se você quiser usar um nome/e-mail diferente em um projeto específico:
-
-```bash
-git config user.name "Outro Nome"
-git config user.email "outro-email@exemplo.com"
-```
-
-### Ver configurações locais:
-
-```bash
-git config --list
-```
-
-> **Resumo:**
-> - `--global` → vale para todos os repositórios do seu usuário.
-> - sem `--global` → vale só para o repositório atual.
 
 ---
 
-## 🔍 4. Ver o estado do repositório — `git status`
+## ❌ 2.3. Remover (unset) configurações
 
-Esse é um dos comandos mais importantes.
+### Local
 
-### Comando:
+```bash
+git config --unset user.name
+git config --unset user.email
+```
+
+### Global
+
+```bash
+git config --global --unset user.name
+git config --global --unset user.email
+```
+
+### System (raro, exige permissões elevadas)
+
+```bash
+git config --system --unset user.name
+git config --system --unset user.email
+```
+
+---
+
+## 🧩 2.4. Outras configurações úteis
+
+### Branch padrão como `main`
+
+```bash
+git config --global init.defaultBranch main
+```
+
+### Editor padrão (VS Code)
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+### Ativar cores
+
+```bash
+git config --global color.ui auto
+```
+
+### `.gitignore` global
+
+```bash
+git config --global core.excludesfile ~/.gitignore_global
+```
+
+---
+
+# 🧾 3. Configurar nome e e-mail
+
+Git precisa saber **quem está fazendo os commits**.
+
+### Global
+
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "seu-email@exemplo.com"
+```
+
+### Local
+
+```bash
+git config user.name "Nome Local"
+git config user.email "email-local@exemplo.com"
+```
+
+### Ver origem das configurações
+
+```bash
+git config --show-origin --list
+```
+
+Exemplo:
+
+```
+file:C:/Users/ander/.gitconfig   user.name=Anderson
+file:.git/config                 user.email=local@exemplo.com
+```
+
+### Remover
+
+Global:
+
+```bash
+git config --global --unset user.name
+```
+
+Local:
+
+```bash
+git config --unset user.name
+```
+
+---
+
+# 📂 4. Iniciando um repositório — `git init`
+
+Para começar a versionar uma pasta:
+
+```bash
+git init
+```
+
+Saída típica:
+
+```
+Initialized empty Git repository in C:/Users/ander/exemplo/.git/
+```
+
+Isso significa:
+
+- Git criou um repositório vazio  
+- A pasta `.git` foi criada  
+
+Verificando:
+
+```bash
+ls -a
+```
+
+```
+.  ..  .git  arquivo1.py
+```
+
+### Quando usar `git init`?
+
+- quando você cria um projeto do zero
+
+### Quando **não** usar?
+
+- ao clonar um repositório (o Git já cria `.git` automaticamente)
+
+---
+
+# 🔍 5. Ver o estado do repositório — `git status`
 
 ```bash
 git status
 ```
 
-### O que ele mostra?
+Exemplo:
 
-- em qual branch você está (por padrão, `main` ou `master`)
-- quais arquivos foram modificados
-- quais arquivos estão prontos para commit (staging)
-- quais arquivos não estão sendo rastreados (untracked)
-
-Exemplo de saída:
-
-```text
+```
 On branch main
+No commits yet
 Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-    script.py
+  script.py
 ```
 
-> **Dica:**  
-> Use `git status` o tempo todo.  
-> Ele é seu “painel de controle”.
+Significa:
+
+- você está na branch `main`  
+- não há commits  
+- `script.py` não está sendo rastreado  
+
+Outros estados importantes:
+
+- **Changes not staged for commit** → arquivo modificado, mas não adicionado  
+- **Changes to be committed** → arquivo na staging area  
+- **working tree clean** → nada a fazer  
 
 ---
 
-## 📁 5. Adicionar arquivos ao controle de versão — `git add`
+# 📁 6. Adicionar arquivos — `git add`
 
-Antes de salvar uma versão (commit), você precisa dizer ao Git **quais arquivos** farão parte dessa versão.  
-Isso é feito com o `git add`, que coloca arquivos na **staging area**.
-
-### Adicionar um arquivo específico:
+Adicionar um arquivo:
 
 ```bash
 git add script.py
 ```
 
-### Adicionar todos os arquivos modificados:
+Adicionar todos:
 
 ```bash
 git add .
 ```
 
-### O que é a staging area?
+Verificando:
 
-É uma “área de preparação” onde você coloca os arquivos que vão entrar no próximo commit.
+```bash
+git status
+```
 
-> **Analogia:**  
-> Pense na staging area como uma bandeja de coisas que você vai levar para o caixa.  
-> Você escolhe o que entra na bandeja (`git add`), e depois fecha a compra (`git commit`).
+```
+Changes to be committed:
+  new file: script.py
+```
+
+### A *staging area* é como uma bandeja de supermercado:
+
+- você coloca itens nela (`git add`)  
+- passa tudo no caixa (`git commit`)  
 
 ---
 
-## 💾 6. Salvar uma versão — `git commit`
-
-Depois de adicionar arquivos com `git add`, você salva uma versão com `git commit`.
-
-### Comando básico:
+# 💾 7. Salvar uma versão — `git commit`
 
 ```bash
-git commit -m "Mensagem do commit"
+git commit -m "Mensagem clara"
 ```
 
-### O que acontece?
+Exemplo:
 
-- Git cria um **snapshot** (foto) do estado dos arquivos que estavam na staging area.
-- Essa foto é registrada com:
-  - autor (seu nome/e-mail)
-  - data
-  - mensagem
-  - identificador único (hash)
-
-### Exemplo:
-
-```bash
-git add script.py
-git commit -m "Adiciona script inicial"
+```
+[main (root-commit) 1a2b3c4] Adiciona script inicial
+ 1 file changed, 10 insertions(+)
+ create mode 100644 script.py
 ```
 
-> **Importante:**  
-> A mensagem do commit deve explicar **o que foi feito**, não “o que você sentiu”.  
-> Exemplo bom: `"Implementa função de login"`  
-> Exemplo ruim: `"mexendo aí"`.
+Significa:
+
+- **root-commit** → primeiro commit  
+- **1a2b3c4** → hash do commit  
+- **10 insertions** → 10 linhas adicionadas  
+
+Boas práticas:
+
+- mensagens claras  
+- verbos no imperativo  
+- explique o que foi feito  
 
 ---
 
-## 🗂️ 7. `.gitignore` — ignorando arquivos
+# 🗂️ 8. `.gitignore` — ignorando arquivos
 
-Nem tudo deve ser versionado.
-
-Exemplos:
-
-- arquivos temporários  
-- pastas de build  
-- arquivos de configuração locais  
-- `.env` com senhas  
-
-Para isso, existe o arquivo `.gitignore`.
-
-### Criar um `.gitignore`:
+Criar:
 
 ```bash
 touch .gitignore
 ```
 
-### Exemplo de conteúdo:
+Exemplo:
 
-```text
+```
 __pycache__/
 .env
 *.log
 ```
 
-Isso diz ao Git:
+Ignorar arquivo já rastreado:
 
-- ignore a pasta `__pycache__/`
-- ignore o arquivo `.env`
-- ignore qualquer arquivo `.log`
+```bash
+git rm --cached arquivo.txt
+```
 
-> **Dica:**  
-> Sempre tenha um `.gitignore` em projetos reais.
+`.gitignore` global:
+
+```bash
+git config --global core.excludesfile ~/.gitignore_global
+```
 
 ---
 
-## 🧭 8. Ver histórico de commits — `git log`
-
-Depois de alguns commits, você pode ver o histórico:
+# 🧭 9. Ver histórico — `git log`
 
 ```bash
 git log
 ```
 
-Exemplo de saída:
+Exemplo:
 
-```text
-commit 123abc456def
-Author: Anderson <anderson@exemplo.com>
-Date:   2025-01-01 12:00:00
+```
+commit 1a2b3c4
+Author: Anderson
+Date: Tue Jan 1
 
     Adiciona script inicial
-
-commit 789xyz000aaa
-Author: Anderson <anderson@exemplo.com>
-Date:   2025-01-02 09:30:00
-
-    Implementa função de login
 ```
 
-### Versão resumida:
+Versão resumida:
 
 ```bash
 git log --oneline
 ```
 
-Exemplo:
+Sair do log:
 
-```text
-123abc4 Adiciona script inicial
-789xyz0 Implementa função de login
+```
+q
 ```
 
 ---
 
-## 🔁 9. Fluxo básico de trabalho com Git local
+# 🔁 10. Fluxo básico de trabalho (local)
 
-Aqui está o fluxo típico:
-
-1. **Iniciar repositório:**
-   ```bash
-   git init
-   ```
-
-2. **Configurar nome e e-mail (uma vez):**
-   ```bash
-   git config --global user.name "Seu Nome"
-   git config --global user.email "seu-email@exemplo.com"
-   ```
-
-3. **Ver estado:**
-   ```bash
-   git status
-   ```
-
-4. **Adicionar arquivos:**
-   ```bash
-   git add .
-   ```
-
-5. **Salvar versão:**
-   ```bash
-   git commit -m "Mensagem clara do que foi feito"
-   ```
-
-6. **Ver histórico:**
-   ```bash
-   git log --oneline
-   ```
-
----
-
-## 🧩 10. Resumo rápido (para colar na parede)
-
-```text
+```
 git init
-    → transforma uma pasta comum em repositório Git
-
 git config --global user.name "Nome"
-git config --global user.email "email"
-    → define quem é você (para todos os repositórios)
-
+git config --global user.email "Email"
 git status
-    → mostra o estado atual (arquivos modificados, rastreados, etc.)
-
-git add arquivo / git add .
-    → coloca arquivos na staging area (preparação para commit)
-
+git add .
 git commit -m "mensagem"
-    → salva uma versão (snapshot) dos arquivos na staging area
-
-.gitignore
-    → lista de arquivos/pastas que o Git deve ignorar
-
-git log / git log --oneline
-    → mostra o histórico de commits
+git log --oneline
 ```
 
 ---
 
-## 🎉 Fim do Guia 1 — Git Básico: Repositório Local
+# 🎉 Fim do Guia 1 — Git Básico + Configurações
 
-Depois de dominar este guia, você está pronto para:
+Agora você entende:
 
-- aprofundar em **staging area e commits**  
-- aprender **branches**  
-- começar a conectar seu repositório local com o GitHub  
+- como iniciar um repositório  
+- como configurar o Git  
+- como interpretar saídas do terminal  
+- como adicionar arquivos  
+- como fazer commits  
+- como ignorar arquivos  
+- como ver o histórico  
+- como seguir o fluxo básico de trabalho  
 
-Nos próximos guias, vamos construir em cima disso, sem pular etapas.
+Esse é o alicerce para todos os próximos guias.
