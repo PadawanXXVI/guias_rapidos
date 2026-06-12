@@ -1,8 +1,8 @@
-# 🧭 Guia Completo e Detalhado dos Comandos Essenciais do Terminal (Linux / Git Bash)
+# 🧭 Guia rápido dos comandos essenciais do terminal (Linux / Git Bash)
 
-Este guia explica **os comandos fundamentais de navegação, arquivos, pastas e permissões**, com explicações detalhadas, exemplos e analogias — como quando explicamos o `~`.
+Este guia explica os comandos fundamentais de **navegação, arquivos, pastas e permissões**, com exemplos reais de saída e analogias simples.
 
-Ele serve tanto para **Linux** quanto para **Git Bash no Windows**, pois ambos usam os mesmos comandos básicos.
+Funciona tanto em **Linux** quanto em **Git Bash no Windows**.
 
 ---
 
@@ -12,87 +12,70 @@ Ele serve tanto para **Linux** quanto para **Git Bash no Windows**, pois ambos u
 pwd
 ```
 
-**Significa:** *print working directory*  
 **Função:** mostra o caminho completo da pasta atual.
 
-É como perguntar ao terminal:  
-> “Em qual pasta eu estou agora?”
-
-Exemplo de saída no Git Bash:
+Exemplo:
 
 ```
-/c/Users/ander
+/c/Users/ander/OneDrive/Área de Trabalho
 ```
 
 ---
 
 # 📂 2. Navegar entre pastas — `cd`
 
-**Significa:** *change directory*  
-**Função:** muda a pasta atual.
-
-### Entrar em uma pasta:
+### Entrar em uma pasta
 ```bash
-cd nome_da_pasta
+cd projetos
 ```
 
-### Voltar uma pasta:
+### Voltar uma pasta
 ```bash
 cd ..
 ```
 
-### Ir para sua pasta de usuário (home):
+### Ir para a home
 ```bash
 cd ~
 ```
 
-### Ir para a raiz do sistema:
+### Ir para a raiz
 ```bash
 cd /
 ```
 
-### Símbolos importantes:
-- `~` → sua pasta de usuário  
-- `.` → a pasta atual  
-- `..` → a pasta acima  
-
-**Analogia:**  
-Pense no terminal como um explorador de arquivos sem janelas.  
-O `cd` é como clicar duas vezes em uma pasta.
+### Símbolos
+- `~` → home  
+- `.` → atual  
+- `..` → acima  
 
 ---
 
 # 📋 3. Listar arquivos e pastas — `ls`
 
-**Significa:** *list*  
-**Função:** mostra o conteúdo da pasta atual.
-
-### Listar conteúdo:
+### Listar conteúdo
 ```bash
 ls
 ```
 
-### Listar com detalhes:
+### Listar com detalhes
 ```bash
 ls -l
 ```
 
-Mostra:
-- permissões  
-- dono  
-- grupo  
-- tamanho  
-- data  
-- nome  
+Exemplo:
 
-### Listar arquivos ocultos:
+```
+-rw-r--r-- 1 anderson users 1024 Jun 12 09:00 notas.txt
+drwxr-xr-x 2 anderson users 4096 Jun 12 08:50 projetos
+```
+
+### Listar ocultos
 ```bash
 ls -a
 ```
 
-Arquivos ocultos começam com `.` (ex: `.ssh`, `.git`).
-
-### Combinar opções:
+### Combinar
 ```bash
 ls -la
 ```
@@ -101,14 +84,11 @@ ls -la
 
 # 🏗️ 4. Criar pastas — `mkdir`
 
-**Significa:** *make directory*  
-**Função:** cria uma nova pasta.
-
 ```bash
 mkdir nova_pasta
 ```
 
-Criar várias de uma vez:
+Criar várias:
 
 ```bash
 mkdir pasta1 pasta2 pasta3
@@ -122,30 +102,23 @@ mkdir pasta1 pasta2 pasta3
 touch arquivo.txt
 ```
 
-- Cria um arquivo vazio se ele não existir.  
-- Atualiza a data de modificação se já existir.
-
-É muito usado para criar arquivos rapidamente.
+Cria arquivo vazio ou atualiza data de modificação.
 
 ---
 
 # 🗑️ 6. Apagar arquivos e pastas — `rm` e `rmdir`
 
-### Apagar arquivo:
+### Apagar arquivo
 ```bash
 rm arquivo.txt
 ```
 
-⚠ **Cuidado:** não vai para lixeira.
-
-### Apagar pasta com tudo dentro:
+### Apagar pasta com tudo dentro
 ```bash
 rm -r nome_da_pasta
 ```
 
-- `-r` → *recursive* (apaga tudo dentro da pasta).
-
-### Apagar pasta vazia:
+### Apagar pasta vazia
 ```bash
 rmdir pasta_vazia
 ```
@@ -154,54 +127,45 @@ rmdir pasta_vazia
 
 # 🔀 7. Mover ou renomear — `mv`
 
-### Mover arquivo:
+### Mover
 ```bash
 mv arquivo.txt pasta/
 ```
 
-### Renomear arquivo:
+### Renomear
 ```bash
 mv antigo.txt novo.txt
 ```
-
-**Analogia:**  
-É como arrastar um arquivo para outra pasta ou renomeá-lo no Explorer.
 
 ---
 
 # 📑 8. Copiar arquivos e pastas — `cp`
 
-### Copiar arquivo:
+### Copiar arquivo
 ```bash
 cp arquivo.txt copia.txt
 ```
 
-### Copiar pasta inteira:
+### Copiar pasta inteira
 ```bash
 cp -r pasta_original pasta_copia
 ```
-
-- `-r` → copia recursivamente (incluindo subpastas).
 
 ---
 
 # 📖 9. Ver conteúdo de arquivos — `cat` e `less`
 
-### Mostrar conteúdo:
+### Mostrar conteúdo
 ```bash
 cat arquivo.txt
 ```
 
-### Ver arquivo rolando:
+### Ver arquivo rolando
 ```bash
 less arquivo.txt
 ```
 
-- Use `q` para sair do `less`.
-
-**Quando usar qual?**  
-- `cat` → arquivos pequenos  
-- `less` → arquivos grandes  
+Use `q` para sair.
 
 ---
 
@@ -211,8 +175,6 @@ less arquivo.txt
 clear
 ```
 
-Apenas limpa a visualização do terminal.
-
 ---
 
 # 🔍 11. Procurar texto dentro de arquivos — `grep`
@@ -221,34 +183,28 @@ Apenas limpa a visualização do terminal.
 grep "texto" arquivo.txt
 ```
 
-Mostra linhas que contêm o texto procurado.
-
 Exemplo:
 
-```bash
-grep "Anderson" notas.txt
+```
+Anderson: lembrete de reunião às 10h
 ```
 
 ---
 
-# 🧩 12. Conceitos de caminhos (importantíssimo)
+# 🧩 12. Conceitos de caminhos
 
-### Caminho absoluto:
-Começa na raiz:
-
+### Caminho absoluto
 ```
 /home/anderson/projetos
 /c/Users/ander/Documents
 ```
 
-### Caminho relativo:
-Depende da pasta atual:
-
-```
+### Caminho relativo
+```bash
 cd projetos/meu_app
 ```
 
-### Símbolos:
+### Símbolos
 - `~` → home  
 - `.` → atual  
 - `..` → acima  
@@ -257,64 +213,37 @@ cd projetos/meu_app
 
 # 🔐 13. Permissões no Linux (r, w, x)
 
-No Linux (e Git Bash), cada arquivo/pasta tem permissões.
-
-Quando você usa `ls -l`, vê algo assim:
+Exemplo de `ls -l`:
 
 ```
--rwxr-xr--
+-rwxr-xr-- 1 anderson users 1024 Jun 12 09:00 script.sh
 ```
 
-Isso representa:
+### Significado
+- **r** → read  
+- **w** → write  
+- **x** → execute  
 
-```
-[ dono ] [ grupo ] [ outros ]
- rwx      r-x       r--
-```
-
-### Significado das letras:
-
-- **r** → read (ler)
-- **w** → write (escrever)
-- **x** → execute (executar)
-
-### Para arquivos:
-- `r` → pode abrir/ler  
-- `w` → pode editar  
-- `x` → pode executar (scripts, programas)
-
-### Para pastas:
-- `r` → pode listar conteúdo  
-- `w` → pode criar/apagar arquivos dentro  
-- `x` → pode entrar na pasta (`cd`)
-
-### Exemplo explicado:
-
-```
-drwxr-xr--
-```
-
-- `d` → é diretório  
-- `rwx` → dono pode tudo  
-- `r-x` → grupo pode ler e entrar  
-- `r--` → outros só podem ler  
+### Para pastas
+- `r` → listar  
+- `w` → criar/apagar  
+- `x` → entrar  
 
 ---
 
 # 🔧 14. Alterar permissões — `chmod`
 
-### Dar permissão de execução:
+### Dar permissão de execução
 ```bash
 chmod +x script.sh
 ```
 
-### Remover permissão de escrita:
+### Remover permissão de escrita
 ```bash
 chmod -w arquivo.txt
 ```
 
-### Modo numérico (mais avançado):
-
+### Modo numérico
 ```
 r = 4
 w = 2
@@ -327,14 +256,8 @@ Exemplo:
 chmod 755 arquivo.sh
 ```
 
-Significa:
-
-- 7 → dono: rwx  
-- 5 → grupo: r-x  
-- 5 → outros: r-x  
-
 ---
 
 # 🎉 Fim do guia
 
-Este é o conjunto essencial de comandos para trabalhar com terminal no dia a dia, com explicações detalhadas, analogias e exemplos práticos.
+Comandos essenciais para navegar, manipular arquivos e entender permissões no terminal.
