@@ -1,6 +1,6 @@
 # 🧭 Guia Completo e Detalhado dos Comandos Essenciais do Terminal (Linux / Git Bash)
 
-Este guia explica **os comandos fundamentais de navegação, arquivos, pastas e permissões**, com explicações detalhadas, exemplos e analogias — como quando explicamos o `~`.
+Este guia explica **os comandos fundamentais de navegação, arquivos, pastas e permissões**, com explicações detalhadas, exemplos e analogias.
 
 Ele serve tanto para **Linux** quanto para **Git Bash no Windows**, pois ambos usam os mesmos comandos básicos.
 
