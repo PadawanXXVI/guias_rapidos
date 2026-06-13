@@ -17,73 +17,63 @@
 
 </div>
 
-🎨 Visão Geral
+## 🎨 Visão Geral
 
 Este repositório reúne materiais pensados para estudo rápido e eficiente:
 
-🖥️ Comandos de Terminal
-
-🐙 Git (básico e avançado)
-
-☁️ GitHub e colaboração
-
-🔧 Fluxos de trabalho reais
+- 🖥️ Comandos de Terminal
+- 🐙 Git (básico e avançado)
+- ☁️ GitHub e colaboração
+- 🔧 Fluxos de trabalho reais
 
 Cada guia é independente, mas juntos formam uma trilha completa.
 
-📘 Sumário dos Guias
+## 📘 Sumário dos Guias
 
-🖥️ Guia de Comandos de Terminal
+### 🖥️ Guia de Comandos de Terminal
 
 Fundamentos essenciais para navegar no sistema, manipular arquivos, entender POSIX e dominar o shell.
 
-📘 Guia 1 — Git Básico + Configurações
+### 📘 Guia 1 — Git Básico + Configurações
 
 “Git funciona registrando snapshots (fotos) do estado do projeto a cada commit.”
 
 Conteúdo:
 
-O que é Git e como funciona internamente
+- O que é Git e como funciona internamente
+- `git init`, `.git` e estrutura interna
+- Configurações (system, global, local)
+- `git status`, `git add`, `git commit`
+- .gitignore` e boas práticas
+- Histórico com git log
+- Fluxo básico de versionamento
 
-git init, .git e estrutura interna
+---
 
-Configurações (system, global, local)
-
-git status, git add, git commit
-
-.gitignore e boas práticas
-
-Histórico com git log
-
-Fluxo básico de versionamento
-
-📙 Guia 2 — Staging Area e Commits Avançados
+### 📙 Guia 2 — Staging Area e Commits Avançados
 
 “A staging area é uma área intermediária entre os arquivos do seu projeto e o commit que você vai criar.”
 
 Conteúdo:
 
-Estados dos arquivos no Git
+- Estados dos arquivos no Git
+- `git add -p` (adição interativa)
+- Diferença entre working directory, staging e commit
+- `git commit --amend`
+- Commits com título + descrição
+- Commits vazios
+- `git diff` e `git diff --staged`
+- Reverter e resetar commits com segurança
 
-git add -p (adição interativa)
+---
 
-Diferença entre working directory, staging e commit
-
-git commit --amend
-
-Commits com título + descrição
-
-Commits vazios
-
-git diff e git diff --staged
-
-Reverter e resetar commits com segurança
-
-📕 Guia 3 — (em desenvolvimento)
+### 📕 Guia 3 — (em desenvolvimento)
 
 Baseado no arquivo do repositório.Pode incluir: branches, merges, GitHub remoto, pull requests, workflows etc.
 
-🔗 Como os guias se conectam
+---
+
+### 🔗 Como os guias se conectam
 
 <div style="background: #111; padding: 20px; border-radius: 10px; color: #eee;">
 
