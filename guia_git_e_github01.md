@@ -1,44 +1,57 @@
 # 📘 Guia 1 — Git Básico + Configurações
 
-Este guia ensina Git **do zero**, com explicações claras, exemplos reais e saídas do terminal comentadas.  
-Ideal para quem está começando e quer entender **o que está fazendo** em cada comando.
+Este guia apresenta Git do zero, com explicações diretas, exemplos reais e saídas de terminal comentadas.
+
+Ele foi pensado para quem está começando e quer entender o porquê de cada comando, não apenas decorar instruções.
+
+Nota: Este guia cobre o fluxo essencial do Git.
+
+Comandos como git add e git commit aparecem aqui em sua forma básica, pois fazem parte do funcionamento mínimo do Git.
+
+Para técnicas avançadas — como adicionar trechos específicos, revisar diferenças e editar commits — consulte o Guia 2 (Staging Area e Commits Avançados).
 
 ---
 
 # 🧠 1. O que é Git (em poucas palavras)
 
-Git é um **sistema de controle de versão distribuído**.  
-Ele registra o histórico completo do seu projeto e permite voltar no tempo, comparar versões e trabalhar com segurança — tudo isso **sem depender de internet**.
+Git é um sistema de controle de versão distribuído.
 
-Quando você usa Git em uma pasta, ele cria uma pasta oculta chamada:
+Ele registra o histórico completo do seu projeto, permitindo comparar versões, voltar no tempo e trabalhar com segurança — tudo isso sem depender de internet.
 
-```
+Quando você ativa o Git em uma pasta, ele cria um diretório oculto chamado:
+
+```bash
 .git
 ```
 
-Essa pasta transforma uma pasta comum em um **repositório Git** e guarda:
+Esse diretório transforma a pasta comum em um repositório Git, armazenando:
 
-- histórico de commits  
-- branches  
-- configurações  
-- referências internas  
-- metadados  
-- objetos compactados do Git  
+- histórico de commits
+- referências internas
+- branches
+- metadados
+- objetos compactados
+- configurações específicas do repositório
 
-> **Nunca mexa manualmente dentro da pasta `.git`.**  
-> Ela é o “cérebro” do repositório — alterar algo ali pode corromper todo o histórico.
+Nunca altere manualmente a pasta `.git`.  
 
-Git funciona registrando **snapshots** (fotos) do estado do projeto a cada commit.  
-Ele não salva arquivos inteiros repetidamente — salva **apenas as diferenças**, o que o torna rápido e eficiente.
+Ela é o “núcleo” do repositório — qualquer modificação incorreta pode corromper o histórico inteiro.
 
-**Analogia:**  
-Pense no Git como um “histórico infinito” do seu projeto, onde cada commit é uma foto do momento.
+O Git funciona registrando snapshots (fotos) do estado do projeto a cada commit.
+
+Ele não salva cópias completas dos arquivos repetidamente — apenas as diferenças, o que o torna extremamente rápido e eficiente.
+
+## Analogia:  
+
+Imagine o Git como um álbum de fotos do seu projeto.
+
+Cada commit é uma nova foto, mostrando como tudo estava naquele momento.
 
 ---
 
-# 📂 2. Iniciando um repositório — `git init`
+# 📂 2. Iniciando um repositório — git init
 
-Para começar a versionar uma pasta:
+Para começar a versionar uma pasta com Git, o primeiro passo é inicializar um repositório:
 
 ```bash
 git init
@@ -46,54 +59,66 @@ git init
 
 Saída típica:
 
-```
+```bash
 Initialized empty Git repository in C:/Users/ander/exemplo/.git/
 ```
 
-Isso significa:
+Isso significa que:
 
-- Git criou um repositório vazio  
-- A pasta `.git` foi criada  
+- o Git criou um repositório vazio
+- a pasta oculta .git foi criada e agora guarda todo o histórico e metadados do projeto
 
-Verificando:
+Você pode confirmar com:
 
 ```bash
 ls -a
 ```
 
-```
+Saída típica:
+
+```bash
 .  ..  .git  arquivo1.py
 ```
 
-### Quando usar `git init`?
+A partir desse momento, a pasta deixa de ser comum e passa a ser um repositório Git.
 
-- quando você cria um projeto do zero
+## 📌 2.1. Quando usar git init?
 
-### Quando **não** usar?
+Use git init quando:
 
-- ao clonar um repositório (o Git já cria `.git` automaticamente)
+- você está criando um projeto do zero
+- deseja transformar uma pasta existente em um repositório Git
+- quer começar a registrar histórico localmente, mesmo sem GitHub ou internet
+
+## 🚫 2.2. Quando não usar git init?
+
+Não use git init quando você está clonando um repositório:
+
+```bash
+git clone https://github.com/usuario/projeto.git
+```
+
+Nesse caso, o Git já cria a pasta `.git` automaticamente, então rodar `git init` dentro dela causaria conflitos.
 
 ---
 
 # ⚙️ 3. Configurações do Git — system, global e local
 
-Git possui **3 níveis de configuração**, cada um armazenado em um arquivo diferente:
+O Git permite configurar seu comportamento em três níveis diferentes. Cada nível corresponde a um arquivo distinto e afeta um escopo específico:
 
-| Nível | Afeta quem? | Arquivo onde fica |
-|------|-------------|-------------------|
-| **system** | todos os usuários da máquina | `/etc/gitconfig` |
-| **global** | apenas o usuário atual | `~/.gitconfig` |
-| **local** | apenas o repositório atual | `.git/config` |
+| Nível     | Escopo                        | Arquivo           |
+|-----------|-------------------------------|--------------------|
+| **system** | todos os usuários da máquina  | `/etc/gitconfig`   |
+| **global** | apenas o usuário atual        | `~/.gitconfig`     |
+| **local**  | apenas o repositório atual    | `.git/config`      |
 
-### ✔ Ordem de prioridade
+## ✔ Ordem de prioridade
 
-```
+```bash
 local > global > system
 ```
 
-> Se uma configuração existe no nível local, ela sobrescreve a global e a system.
-
----
+Se uma configuração existir no nível local, ela sobrescreve a mesma configuração nos níveis global e system.
 
 ## 🧾 3.1. Ver configurações
 
@@ -103,236 +128,242 @@ local > global > system
 git config --list
 ```
 
-### Ver apenas as globais
+### Ver apenas as configurações globais
 
 ```bash
 git config --global --list
 ```
-
-### Ver apenas as locais
+### Ver apenas as configurações locais
 
 ```bash
 git config --local --list
 ```
 
-### Ver de onde vem cada configuração
+### Ver a origem de cada configuração
 
 ```bash
 git config --show-origin --list
 ```
 
-Exemplo:
+Exemplo de saída:
 
-```
+```bash
 file:C:/Users/ander/.gitconfig   user.name=Anderson
 file:.git/config                 user.email=local@exemplo.com
 ```
 
----
-
 ## 🧑‍💻 3.2. Definir nome e e-mail
 
-Git precisa saber **quem está fazendo os commits**.
+O Git precisa saber quem está criando os commits.
 
-### Global (recomendado)
+Essas informações aparecem no histórico e ajudam a identificar autores.
+
+### Configuração global (recomendada)
 
 ```bash
 git config --global user.name "Seu Nome"
 git config --global user.email "seu-email@exemplo.com"
 ```
 
-### Local (somente no repositório atual)
+### Configuração local (somente para o repositório atual)
 
 ```bash
 git config user.name "Nome Local"
 git config user.email "email-local@exemplo.com"
 ```
-
-### Ver origem das configurações
+### Ver a origem das configurações
 
 ```bash
 git config --show-origin --list
 ```
 
-Exemplo:
-
-```
-file:C:/Users/ander/.gitconfig   user.name=Anderson
-file:.git/config                 user.email=local@exemplo.com
-```
----
-
 ## ❌ 3.3. Remover (unset) configurações
 
-### Local
-
+### Remover configuração local
 ```bash
 git config --unset user.name
 git config --unset user.email
 ```
 
-### Global
+### Remover configuração global
 
 ```bash
 git config --global --unset user.name
 git config --global --unset user.email
 ```
 
-### System (raro, exige permissões elevadas)
-
+### Remover configuração system (raro e exige permissões elevadas)
 ```bash
 git config --system --unset user.name
 git config --system --unset user.email
 ```
 
----
-
 ## 🧩 3.4. Outras configurações úteis
 
-### Branch padrão como `main`
+### Definir main como branch padrão
 
 ```bash
 git config --global init.defaultBranch main
 ```
 
-### Editor padrão (VS Code)
+### Definir editor padrão (VS Code)
 
 ```bash
 git config --global core.editor "code --wait"
 ```
 
-### Ativar cores
+### Ativar cores no terminal
 
 ```bash
 git config --global color.ui auto
 ```
 
-### `.gitignore` global
+### Definir `.gitignore` global
 
 ```bash
 git config --global core.excludesfile ~/.gitignore_global
 ```
 
-> **📌 Observação importante sobre `git config` e `git init`**
->
-> ✔ Você **pode** rodar `git config` **antes** de `git init`.  
-> Isso porque:
->
-> - `git config --global` escreve no arquivo `~/.gitconfig`  
-> - esse arquivo **não depende** de existir um repositório  
-> - ele vale para **todos os repositórios futuros**
->
-> Ou seja:  
-> **configurações globais não precisam de um repositório Git para existir.**
+## 📌 Observação importante sobre `git config` e `git init`
+
+Você pode configurar o Git antes de iniciar qualquer repositório.
+
+Isso funciona porque:
+
+- git config --global escreve no arquivo `~/.gitconfig`
+- esse arquivo não depende de existir um repositório
+- as configurações globais valem para todos os repositórios futuros
+
+Ou seja:
+
+Configurações globais não exigem que você tenha rodado `git init`.
 
 ---
 
 # 🔍 4. Ver o estado do repositório — `git status`
 
+O comando `git status` mostra a situação atual do repositório: quais arquivos estão sendo rastreados, quais foram modificados e o que está pronto para commit.
+
 ```bash
 git status
 ```
 
-Exemplo:
+Exemplo de saída:
 
-```
+```bash
 On branch main
 No commits yet
 Untracked files:
   script.py
 ```
 
-Significa:
+## Interpretação:
 
-- você está na branch `main`  
-- não há commits  
-- `script.py` não está sendo rastreado  
+- você está na branch `main`
+- ainda não existem commits
+- `script.py` não está sendo rastreado pelo Git
 
-Outros estados importantes:
+## Outros estados importantes exibidos pelo `git status`:
 
-- **Changes not staged for commit** → arquivo modificado, mas não adicionado  
-- **Changes to be committed** → arquivo na staging area  
-- **working tree clean** → nada a fazer  
+- Changes not staged for commit → arquivo foi modificado, mas ainda não está na staging area
+- Changes to be committed → arquivo já está na staging area e será incluído no próximo commit
+- working tree clean → não há nada para adicionar, modificar ou commitar
+
+O `git status` é um dos comandos mais importantes do fluxo básico, pois mostra exatamente o que o Git sabe (ou não sabe) sobre seus arquivos. Ele será usado constantemente ao longo deste guia e também no [Guia 2](guia_git_e_github02.md), mas aqui você aprende apenas o uso essencial.
 
 ---
 
 # 📁 5. Adicionar arquivos — `git add`
 
-Adicionar um arquivo:
+O comando `git add` coloca arquivos na *staging area*, preparando-os para serem incluídos no próximo commit.
+
+## Adicionar um arquivo específico:
 
 ```bash
 git add script.py
 ```
 
-Adicionar todos:
+## Adicionar todos os arquivos modificados ou novos:
 
 ```bash
 git add .
 ```
 
-Verificando:
+## Confirmando o estado:
 
 ```bash
 git status
 ```
 
-```
+Exemplo de saída:
+
+```bash
 Changes to be committed:
   new file: script.py
 ```
 
-### A *staging area* é como uma bandeja de supermercado:
+A staging area funciona como uma bandeja de supermercado:
 
-- você coloca itens nela (`git add`)  
-- passa tudo no caixa (`git commit`)  
+- você coloca itens nela (`git add`)
+- e depois confirma tudo de uma vez no caixa (`git commit`)
+
+Nota: Aqui você aprende apenas o uso básico de git add, suficiente para o fluxo essencial do Git.
+
+Técnicas avançadas, como, por exemplo, adicionar apenas partes de um arquivo (`git add -p`), são tratadas no [Guia 2](guia_git_e_github02.md), para evitar redundância entre os materiais.
 
 ---
 
 # 💾 6. Salvar uma versão — `git commit`
 
+O comando `git commit` registra uma nova versão do projeto, criando um ponto no histórico que você pode consultar ou restaurar no futuro.
+
+Criar um commit com uma mensagem clara:
+
 ```bash
 git commit -m "Mensagem clara"
 ```
 
-Exemplo:
+Exemplo de saída:
 
-```
+```bash
 [main (root-commit) 1a2b3c4] Adiciona script inicial
  1 file changed, 10 insertions(+)
  create mode 100644 script.py
 ```
 
-Significa:
+## Interpretação:
 
-- **root-commit** → primeiro commit  
-- **1a2b3c4** → hash do commit  
-- **10 insertions** → 10 linhas adicionadas  
+- `root-commit` → é o primeiro commit do repositório
+- `1a2b3c4` → hash único que identifica o commit
+- `10 insertions` → 10 linhas foram adicionadas ao projeto
 
-Boas práticas:
+## Boas práticas para mensagens de commit
 
-- mensagens claras  
-- verbos no imperativo  
-- explique o que foi feito  
+- use mensagens claras e objetivas
+- prefira verbos no imperativo (“Adiciona”, “Corrige”, “Remove”)
+- descreva o que foi feito, não o porquê (o “porquê” pertence ao pull request ou issue)
+
+Nota: Aqui você aprende apenas o uso essencial de `git commit`.
+
+Técnicas avançadas, como editar o último commit (`--amend`) ou criar commits estruturados, são abordadas no [Guia 2](guia_git_e_github02.md), para manter este guia focado no fluxo básico.
 
 ---
 
 # 🗂️ 7. `.gitignore` — ignorando arquivos corretamente
 
-O arquivo **`.gitignore`** diz ao Git **quais arquivos e pastas devem ser ignorados** — ou seja, não rastreados, não adicionados, não commitados e não enviados ao repositório remoto.
+O arquivo `.gitignore` informa ao Git quais arquivos e pastas devem ser ignorados, ou seja, não rastreados, não adicionados, não commitados e não enviados ao repositório remoto.
 
-Ele é essencial para manter o repositório **limpo, seguro e leve**.
-
----
+Ele é essencial para manter o repositório limpo, seguro e leve.
 
 ## 🧠 7.1. Por que usar um `.gitignore`?
 
 Você deve ignorar arquivos que:
 
-- **não fazem parte do código-fonte**
-- **são gerados automaticamente**
-- **contêm informações sensíveis**
-- **são específicos da sua máquina**
-- **não devem ir para o GitHub**
+- não fazem parte do código-fonte
+- são gerados automaticamente
+- contêm informações sensíveis
+- são específicos da sua máquina
+- não devem ir para o GitHub
 
 Exemplos comuns:
 
@@ -343,15 +374,14 @@ Exemplos comuns:
 - arquivos temporários (`*.tmp`)
 - dependências reinstaláveis (`node_modules/`)
 
----
-
 ## 📍 7.2. Onde criar o `.gitignore`?
 
-Crie o arquivo **na raiz do repositório**, no mesmo nível da pasta `.git`:
+Crie o arquivo na raiz do repositório, no mesmo nível da pasta `.git`:
 
 ```bash
 touch .gitignore
 ```
+
 Estrutura típica:
 
 ```bash
@@ -364,7 +394,7 @@ meu-projeto/
 
 ## ✍️ 7.3. O que escrever dentro do `.gitignore`?
 
-Você escreve padrões de arquivos ou pastas que o Git deve ignorar.
+Você adiciona padrões de arquivos ou pastas que o Git deve ignorar.
 
 Exemplo básico:
 
@@ -376,37 +406,32 @@ __pycache__/
 
 Explicando:
 
-- __pycache__/ → ignora a pasta inteira
-- .env → ignora o arquivo .env
-- *.log → ignora todos os arquivos .log
-
----
+- `__pycache__/` → ignora a pasta inteira
+- `.env` → ignora o arquivo .env
+- `*.log` → ignora todos os arquivos .log
 
 ## 🔄 7.4. Ignorando arquivos que já estão sendo rastreados
 
-Se você já comitou um arquivo e depois o adicionou ao .gitignore, ele não será ignorado automaticamente.
+Se um arquivo já foi commitado antes de entrar no `.gitignore`, ele continuará sendo rastreado.
 
-Você precisa removê-lo do Git (mas não do disco):
+Para removê-lo do histórico sem apagar do disco:
 
 ```bash
 git rm --cached arquivo.txt
 ```
 
-Depois disso, o Git passa a ignorá-lo.
+Depois disso, o Git passa a ignorá-lo normalmente.
 
----
+## 🌍 7.5. `.gitignore` global (para todos os repositórios)
 
-## 🌍 7.5. .gitignore global (para todos os repositórios)
-
-Você pode criar um .gitignore que vale para todos os seus projetos:
+Você pode criar um `.gitignore` que vale para todos os seus projetos:
 
 ```bash
 git config --global core.excludesfile ~/.gitignore_global
 ```
-
 Exemplo de .gitignore_global:
 
-```bash
+```
 # Arquivos do sistema
 Thumbs.db
 .DS_Store
@@ -416,8 +441,6 @@ Thumbs.db
 .idea/
 ```
 
----
-
 ## 🧠 7.6. Dicas profissionais
 
 - Sempre ignore arquivos sensíveis (.env, chaves, tokens).
@@ -425,22 +448,21 @@ Thumbs.db
 - Evite ignorar arquivos importantes por engano.
 - Use `.gitignore` para manter o repositório limpo e leve.
 
-Você pode criar seu `.gitignore` de duas formas:
+### Você pode criar seu .gitignore de duas formas:
 
-**1) Copiar um modelo pronto:**  
+#### Copiar um modelo pronto em:
+
 https://github.com/github/gitignore
 
-**OU**
+#### Gerar um .gitignore personalizado no [gitignore.io](https://www.toptal.com/developers/gitignore):
 
-**2) Gerar um `.gitignore` personalizado:**  
-[gitignore.io](https://www.toptal.com/developers/gitignore)
-
+https://www.toptal.com/developers/gitignore
 
 ---
 
 # 🧭 8. Ver histórico — `git log`
 
-O comando `git log` mostra o **histórico de commits** do repositório, incluindo:
+O comando `git log` exibe o histórico de commits do repositório, incluindo:
 
 - hash do commit  
 - autor  
@@ -463,12 +485,11 @@ Date: Tue Jan 1
 
 ## 📌 8.1. Versão resumida
 
-Mostra cada commit em uma linha:
+Mostra cada commit em uma única linha:
 
 ```bash
 git log --oneline
 ```
-
 Saída típica:
 
 ```bash
@@ -477,9 +498,12 @@ Saída típica:
 
 ## 📌 8.2. Navegação dentro do log
 
-Quando o log abre, ele usa um pager (como o less).
+O git log usa um pager (como o less) para facilitar a navegação.
+  
+Um pager é apenas um visualizador que permite rolar textos longos no terminal sem que eles “estourem” a tela. O less é o pager padrão: ele deixa você subir, descer e sair quando quiser, tornando a leitura do histórico muito mais controlada.
 
-Comandos úteis:
+### Comandos úteis:
+
 - ↑ / ↓ → rolar
 - space → próxima página
 - b → página anterior
@@ -487,22 +511,20 @@ Comandos úteis:
 
 ## 📌 8.3. Mostrar gráfico das branches
 
-Visualização muito útil para entender merges e branches:
+Visualização muito útil para entender merges, branches e a estrutura do histórico:
 
 ```bash
 git log --oneline --graph --decorate --all
 ```
-
 Exemplo:
 
-```bash
+```
 * 1a2b3c4 (HEAD -> main) Adiciona script inicial
 * 9f8e7d6 (feature/login) Cria tela de login
 ```
-
 ## 📌 8.4. Limitar quantidade de commits
 
-Mostrar apenas os últimos 5 commits:
+### Mostrar apenas os últimos 5 commits:
 
 ```bash
 git log -5
@@ -521,6 +543,7 @@ git log --grep="login"
 ```
 
 ## 📌 8.7. Mostrar alterações junto com o commit
+
 ```bash
 git log -p
 ```
@@ -544,7 +567,7 @@ Exemplo:
 ```bash
  script.py | 10 ++++++++++
  1 file changed, 10 insertions(+)
- ```
+```
 
 ## 📌 8.10. Combinação útil para o dia a dia
 
@@ -552,12 +575,12 @@ Exemplo:
 git log --oneline --decorate --graph --all
 ```
 
-Essa é a visualização preferida de muitos desenvolvedores, pois mostra:
+Essa visualização é muito usada por desenvolvedores porque mostra:
 
 - commits resumidos
 - branches
 - merges
-- HEAD
+- posição do HEAD
 - tags
 - estrutura visual do histórico
 
