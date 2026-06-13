@@ -99,12 +99,12 @@ Guia 3 → GitHub, branches e colaboração
 
 📂 Estrutura do Repositório
 
-guias_rapidos/
- ├── guias_em_pdf/
- ├── guia_comandos.md
- ├── guia_git_e_github01.md
- ├── guia_git_e_github02.md
- ├── guia_git_e_github03.md
+guias_rapidos/  
+ ├── guias_em_pdf/  
+ ├── guia_comandos.md  
+ ├── guia_git_e_github01.md  
+ ├── guia_git_e_github02.md  
+ ├── guia_git_e_github03.md  
  └── README.md
 
 👤 Autor
@@ -113,7 +113,9 @@ guias_rapidos/
 
 Anderson de Matos Guimarães
 
-📧 anderson.m.guimaraes@icloud.com🆔 ORCID: 0009-0009-5107-5137🐙 GitHub: PadawanXXVI
+📧 anderson.m.guimaraes@icloud.com  
+🆔 ORCID: 0009-0009-5107-5137  
+🐙 GitHub: PadawanXXVI
 
 </div>
 
