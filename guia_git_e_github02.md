@@ -6,65 +6,69 @@ Este guia aprofunda o funcionamento da **staging area**, explica como o Git regi
 
 # 🧠 1. O que é a Staging Area (de verdade)
 
-A *staging area* é uma área intermediária entre:
+A staging area é uma área intermediária entre:
 
-- os arquivos do seu projeto (working directory)
-- o commit que você vai criar (repositório Git)
+- `working directory` → onde seus arquivos vivem e são modificados
+- `repositório Git` → onde ficam os commits já registrados
 
-Ela funciona como uma **bandeja de supermercado**:
+Ela funciona como uma bandeja de supermercado:
 
-- você coloca itens nela (`git add`)
-- depois passa tudo no caixa de uma vez (`git commit`)
+- você coloca itens nela (git add)
+- depois confirma tudo de uma vez no caixa (git commit)
 
-Isso permite:
+Essa etapa intermediária existe para dar controle total sobre o que vai entrar no commit.
+Com ela, você pode:
 
-- escolher exatamente o que vai entrar no commit  
-- separar mudanças diferentes em commits diferentes  
-- evitar salvar coisas por engano  
-- criar commits limpos e organizados
+- escolher exatamente quais arquivos (ou partes deles) serão commitados
+- separar mudanças diferentes em commits diferentes
+- evitar salvar coisas por engano
+- criar commits limpos, organizados e fáceis de entender
 
-Você vê o que está na staging area usando:
+Você pode ver o que está na staging area usando:
 
 ```bash
 git status
 ```
-
 Exemplo:
 
-```bash
+```
 Changes to be committed:
   new file:   script.py
 ```
+
+Isso significa que `script.py` já está na staging area e será incluído no próximo commit.
 
 ---
 
 # 📁 2. Estados dos arquivos no Git
 
-Um arquivo pode estar em um destes estados:
+No Git, cada arquivo do projeto pode estar em um destes estados. Entender esses estados é essencial para dominar a staging area e os commits avançados.
 
 ---
 
 ## 2.1. `untracked` — não rastreado
 
+O arquivo existe no diretório, mas o Git ainda não o acompanha.
+
 ```bash
 git status
 ```
-
 Saída:
 
-```bash
+```
 Untracked files:
         script.py
 ```
 
----
+Isso significa que `script.py` ainda não faz parte do repositório.
 
-## 2.2. `modified` — modificado, mas não preparado
+## 2.2. modified — modificado, mas não preparado
+
+O arquivo foi alterado, mas ainda não está na staging area.
 
 ```bash
 git status
 ```
-
 Saída:
 
 ```bash
@@ -72,9 +76,11 @@ Changes not staged for commit:
         modified:   app.py
 ```
 
----
+O Git detectou mudanças, mas você ainda não decidiu se elas vão para o próximo commit.
 
-## 2.3. `staged` — preparado para commit
+## 2.3. staged — preparado para commit
+
+O arquivo foi adicionado à staging area e será incluído no próximo commit.
 
 ```bash
 git add app.py
@@ -83,26 +89,29 @@ git status
 
 Saída:
 
-```bash
+```
 Changes to be committed:
         modified:   app.py
 ```
 
----
+Agora o Git sabe exatamente qual versão de `app.py` você quer registrar.
 
-## 2.4. `committed` — registrado no histórico
+## 2.4. committed — registrado no histórico
+
+O arquivo foi salvo no repositório Git e não há mudanças pendentes.
 
 ```bash
 git commit -m "Atualiza app"
 git status
 ```
-
 Saída:
 
 ```bash
 On branch main
 nothing to commit, working tree clean
 ```
+
+Isso indica que tudo está sincronizado entre o `working directory`, a `staging area` e o `repositório`.
 
 ---
 
