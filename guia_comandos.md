@@ -25,7 +25,7 @@ Funciona tanto em **Linux** quanto em **Git Bash no Windows**.
 
 ---
 
-# 🌍 1. Onde estou? — `pwd`
+## 🌍 1. Onde estou? — `pwd`
 
 ```bash
 pwd
@@ -40,11 +40,11 @@ Use quando quiser confirmar **em qual pasta você está** antes de rodar outros 
 
 Exemplo de saída:
 
-```
+```bash
 /c/Users/ander/OneDrive/Área de Trabalho
 ```
 
-**Interpretação:**
+### ❗ Interpretação
 
 - `/c/Users/...` → caminho no estilo Linux usado pelo Git Bash  
 - você está dentro da pasta **Área de Trabalho**  
@@ -54,7 +54,7 @@ Exemplo de saída:
 
 ---
 
-# 📂 2. Navegar entre pastas — `cd`
+## 📂 2. Navegar entre pastas — `cd`
 
 O comando `cd` significa **change directory**  
 → literalmente: *“mudar de diretório”*.
@@ -68,41 +68,49 @@ Ele serve para **entrar, sair e mover-se entre pastas** no terminal.
 ```bash
 cd projetos
 ```
+
 Entra na pasta `projetos` que está dentro da pasta atual.
 
 ---
 
 ### 🔙 Voltar uma pasta
+
 ```bash
 cd ..
 ```
+
 `..` significa *“pasta acima”*.  
 Use para subir um nível na hierarquia.
 
 ---
 
 ### 🏠 Ir para a home
+
 ```bash
 cd ~
 ```
+
 `~` representa sua **pasta pessoal** (home).  
 No Git Bash, geralmente é algo como:
 
-```
+```bash
 /c/Users/seu-usuario
 ```
 
 ---
 
 ### 🗂️ Ir para a raiz do sistema
+
 ```bash
 cd /
 ```
+
 `/` é a **raiz** do sistema de arquivos — o ponto mais alto da árvore.
 
 ---
 
 ### 📌 Símbolos importantes
+
 - `~` → home (pasta do usuário)  
 - `.` → diretório atual  
 - `..` → diretório acima  
@@ -111,7 +119,7 @@ cd /
 
 ---
 
-# 📋 3. Listar arquivos e pastas — `ls`
+## 📋 3. Listar arquivos e pastas — `ls`
 
 O comando `ls` significa **list**  
 → literalmente: *“listar”* os arquivos e pastas do diretório atual.
@@ -119,27 +127,32 @@ O comando `ls` significa **list**
 ---
 
 ### 📄 Listar conteúdo
+
 ```bash
 ls
 ```
+
 Mostra apenas os nomes dos arquivos e pastas.
 
 ---
 
 ### 📑 Listar com detalhes
+
 ```bash
 ls -l
 ```
+
 `-l` significa **long format** (formato longo).  
 Mostra permissões, dono, tamanho e data de modificação.
 
-Exemplo:
-```
+### Exemplo
+
+```bash
 -rw-r--r-- 1 anderson users 1024 Jun 12 09:00 notas.txt
 drwxr-xr-x 2 anderson users 4096 Jun 12 08:50 projetos
 ```
 
-**Como interpretar:**
+### Como interpretar
 
 - `-rw-r--r--` → permissões do arquivo  
 - `d` no início → é um diretório (`projetos`)  
@@ -150,17 +163,21 @@ drwxr-xr-x 2 anderson users 4096 Jun 12 08:50 projetos
 ---
 
 ### 👀 Listar arquivos ocultos
+
 ```bash
 ls -a
 ```
+
 `-a` significa **all** → mostra *todos* os arquivos, incluindo os ocultos (que começam com `.`).
 
 ---
 
 ### 🔍 Combinar opções
+
 ```bash
 ls -la
 ```
+
 Lista **tudo** com **detalhes**.
 
 ---
@@ -169,7 +186,7 @@ Lista **tudo** com **detalhes**.
 
 ---
 
-# 🏗️ 4. Criar pastas — `mkdir`
+## 🏗️ 4. Criar pastas — `mkdir`
 
 O comando `mkdir` significa **make directory**  
 → literalmente: *“criar diretório”* (diretório = pasta).
@@ -179,22 +196,27 @@ Use quando quiser criar novas pastas no sistema.
 ---
 
 ### 📁 Criar uma pasta
+
 ```bash
 mkdir nova_pasta
 ```
+
 Cria uma pasta chamada `nova_pasta` dentro do diretório atual.
 
 ---
 
 ### 📦 Criar várias pastas de uma vez
+
 ```bash
 mkdir pasta1 pasta2 pasta3
 ```
+
 Cria todas as pastas listadas em um único comando.
 
 ---
 
-**Dica:** nomes com espaço precisam de aspas, por exemplo:  
+**Dica:** nomes com espaço precisam de aspas, por exemplo:
+
 ```bash
 mkdir "Minhas Fotos"
 ```
@@ -203,7 +225,7 @@ mkdir "Minhas Fotos"
 
 ---
 
-# 📄 5. Criar arquivos — `touch`
+## 📄 5. Criar arquivos — `touch`
 
 O comando `touch` significa **tocar** (no sentido de *“encostar”* em um arquivo).  
 No Unix, “tocar” um arquivo atualiza sua **data de modificação** — e, se ele **não existir**, o sistema o cria.
@@ -211,17 +233,21 @@ No Unix, “tocar” um arquivo atualiza sua **data de modificação** — e, se
 ---
 
 ### 🆕 Criar um arquivo vazio
+
 ```bash
 touch arquivo.txt
 ```
+
 Se `arquivo.txt` não existir, ele será criado imediatamente.
 
 ---
 
 ### 🔄 Atualizar a data de modificação
+
 ```bash
 touch arquivo.txt
 ```
+
 Se o arquivo **já existir**, o conteúdo não muda — apenas a data/hora de modificação é atualizada.
 
 Isso é útil para scripts, automações ou para marcar arquivos como “recentes”.
@@ -229,6 +255,7 @@ Isso é útil para scripts, automações ou para marcar arquivos como “recente
 ---
 
 **Dica:** você pode criar vários arquivos de uma vez:
+
 ```bash
 touch a.txt b.txt c.txt
 ```
@@ -237,7 +264,7 @@ touch a.txt b.txt c.txt
 
 ---
 
-# 🗑️ 6. Apagar arquivos e pastas — `rm` e `rmdir`
+## 🗑️ 6. Apagar arquivos e pastas — `rm` e `rmdir`
 
 O comando `rm` significa **remove**  
 → literalmente: *“remover”* um arquivo ou pasta.
@@ -251,17 +278,21 @@ Depois do `rm`, não há “desfazer”.
 ---
 
 ### 🗑️ Apagar um arquivo
+
 ```bash
 rm arquivo.txt
 ```
+
 Remove o arquivo definitivamente.
 
 ---
 
 ### 💣 Apagar uma pasta com tudo dentro
+
 ```bash
 rm -r nome_da_pasta
 ```
+
 `-r` significa **recursive** → apaga a pasta e *todo o conteúdo* dentro dela.
 
 Use com cuidado.
@@ -269,15 +300,19 @@ Use com cuidado.
 ---
 
 ### 📭 Apagar uma pasta vazia
+
 ```bash
 rmdir pasta_vazia
 ```
+
 Só funciona se a pasta estiver **completamente vazia**.
 
 ---
 
-**Dica de segurança:**  
+### Dica de segurança
+
 Para confirmar antes de apagar cada item, use:
+
 ```bash
 rm -ri nome_da_pasta
 ```
@@ -286,7 +321,7 @@ rm -ri nome_da_pasta
 
 ---
 
-# 🔀 7. Mover ou renomear — `mv`
+## 🔀 7. Mover ou renomear — `mv`
 
 O comando `mv` significa **move**  
 → literalmente: *“mover”* um arquivo ou pasta.
@@ -296,9 +331,11 @@ Ele também serve para **renomear**, porque renomear nada mais é do que “move
 ---
 
 ### 📦 Mover um arquivo para outra pasta
+
 ```bash
 mv arquivo.txt pasta/
 ```
+
 Move `arquivo.txt` para dentro da pasta `pasta/`.
 
 Se a pasta não existir, o comando falha.
@@ -306,20 +343,25 @@ Se a pasta não existir, o comando falha.
 ---
 
 ### ✏️ Renomear um arquivo
+
 ```bash
 mv antigo.txt novo.txt
 ```
+
 Troca o nome do arquivo sem alterar seu conteúdo.
 
 ---
 
-**Dicas úteis:**
+### Dicas úteis
 
 - Você pode mover **vários arquivos de uma vez**:
+
   ```bash
   mv a.txt b.txt c.txt pasta/
   ```
+
 - Para mover uma pasta inteira:
+
   ```bash
   mv minha_pasta destino/
   ```
@@ -328,7 +370,7 @@ Troca o nome do arquivo sem alterar seu conteúdo.
 
 ---
 
-# 📑 8. Copiar arquivos e pastas — `cp`
+## 📑 8. Copiar arquivos e pastas — `cp`
 
 O comando `cp` significa **copy**  
 → literalmente: *“copiar”* um arquivo ou diretório.
@@ -338,9 +380,11 @@ Ele cria **uma nova cópia**, mantendo o original intacto.
 ---
 
 ### 📄 Copiar um arquivo
+
 ```bash
 cp arquivo.txt copia.txt
 ```
+
 Cria `copia.txt` com o mesmo conteúdo de `arquivo.txt`.
 
 Se `copia.txt` já existir, será sobrescrito.
@@ -348,9 +392,11 @@ Se `copia.txt` já existir, será sobrescrito.
 ---
 
 ### 📁 Copiar uma pasta inteira
+
 ```bash
 cp -r pasta_original pasta_copia
 ```
+
 `-r` significa **recursive** → copia a pasta e *todo o conteúdo* dentro dela (subpastas, arquivos, etc.).
 
 ---
@@ -358,11 +404,13 @@ cp -r pasta_original pasta_copia
 **Dicas úteis:**
 
 - Copiar vários arquivos para uma pasta:
+
   ```bash
   cp a.txt b.txt c.txt destino/
   ```
 
 - Copiar mantendo permissões e atributos:
+
   ```bash
   cp -p arquivo.txt copia.txt
   ```
@@ -371,14 +419,16 @@ cp -r pasta_original pasta_copia
 
 ---
 
-# 📖 9. Ver conteúdo de arquivos — `cat` e `less`
+## 📖 9. Ver conteúdo de arquivos — `cat` e `less`
 
 ### Mostrar conteúdo
+
 ```bash
 cat arquivo.txt
 ```
 
 ### Ver arquivo rolando
+
 ```bash
 less arquivo.txt
 ```
@@ -387,7 +437,7 @@ Use `q` para sair.
 
 ---
 
-# 🧼 10. Limpar a tela — `clear`
+## 🧼 10. Limpar a tela — `clear`
 
 O comando `clear` significa **limpar** a tela do terminal.  
 Ele não apaga arquivos nem comandos — apenas **remove o conteúdo visual** que já apareceu, deixando a tela “limpa”.
@@ -395,6 +445,7 @@ Ele não apaga arquivos nem comandos — apenas **remove o conteúdo visual** qu
 ---
 
 ### 🧽 Limpar a tela
+
 ```bash
 clear
 ```
@@ -403,14 +454,15 @@ O histórico continua existindo (você pode rolar para cima), mas a área visív
 
 ---
 
-**Atalho útil:**  
+### ❗ Atalho útil
+
 Em muitos terminais, você pode usar **Ctrl + L** para o mesmo efeito.
 
 **Analogia:** `clear` é como passar um pano no quadro — você não apaga o que foi escrito, só deixa a superfície limpa para continuar trabalhando.
 
 ---
 
-# 🔍 11. Procurar texto dentro de arquivos — `grep`
+## 🔍 11. Procurar texto dentro de arquivos — `grep`
 
 O comando `grep` significa **global regular expression print**.  
 → literalmente: *“imprimir resultados de uma expressão de busca”*.
@@ -420,13 +472,16 @@ Ele serve para **procurar texto dentro de arquivos**, mostrando apenas as linhas
 ---
 
 ### 🔎 Buscar texto em um arquivo
+
 ```bash
 grep "texto" arquivo.txt
 ```
+
 Mostra todas as linhas de `arquivo.txt` que contêm a palavra `"texto"`.
 
 Exemplo de saída:
-```
+
+```bash
 Anderson: lembrete de reunião às 10h
 ```
 
@@ -435,21 +490,25 @@ Anderson: lembrete de reunião às 10h
 ### 📌 Dicas úteis
 
 - Ignorar maiúsculas/minúsculas:
+
   ```bash
   grep -i "texto" arquivo.txt
   ```
 
 - Mostrar número da linha:
+
   ```bash
   grep -n "texto" arquivo.txt
   ```
 
 - Buscar em vários arquivos:
+
   ```bash
   grep "erro" *.log
   ```
 
 - Buscar recursivamente em pastas:
+
   ```bash
   grep -r "senha" .
   ```
@@ -460,24 +519,26 @@ Anderson: lembrete de reunião às 10h
 
 ---
 
-# 🧩 12. Conceitos de caminhos
+## 🧩 12. Conceitos de caminhos
 
 Para navegar no terminal, você precisa entender dois tipos de caminhos:  
 **absolutos** (completos) e **relativos** (a partir da pasta atual).
 
 ---
 
-## 🛣️ Caminho absoluto
+### 🛣️ Caminho absoluto
 
 Um caminho absoluto começa **na raiz do sistema** (`/`) e mostra **todas** as pastas até o destino.
 
 Exemplos:
-```
+
+```bash
 /home/anderson/projetos
 /c/Users/ander/Documents
 ```
 
 Características:
+
 - sempre começa com `/`
 - funciona de qualquer lugar do sistema
 - é o “endereço completo” do arquivo ou pasta
@@ -489,9 +550,11 @@ Características:
 Um caminho relativo depende **de onde você está agora** (diretório atual).
 
 Exemplo:
+
 ```bash
 cd projetos/meu_app
 ```
+
 Aqui, `projetos/meu_app` é interpretado **a partir da pasta atual**.
 
 Se você estiver em `/home/anderson`, o comando te levará para:  
@@ -513,12 +576,13 @@ Caminho relativo é como dizer “entre naquela sala ali do lado” — depende 
 
 ---
 
-# 🔐 13. Permissões no Linux (r, w, x)
+## 🔐 13. Permissões no Linux (r, w, x)
 
 No Linux, cada arquivo e pasta possui **permissões**, que definem quem pode **ler**, **escrever** ou **executar**.
 
 Exemplo de saída do `ls -l`:
-```
+
+```bash
 -rwxr-xr-- 1 anderson users 1024 Jun 12 09:00 script.sh
 ```
 
@@ -526,20 +590,21 @@ A primeira parte (`-rwxr-xr--`) representa as permissões.
 
 Ela é dividida assim:
 
-```
+```bash
 [ tipo ][ dono ][ grupo ][ outros ]
    -     rwx     r-x       r--
 ```
 
 ---
 
-## 🔤 Significado das letras
+### 🔤 Significado das letras
 
 - **r** → *read* (ler)  
 - **w** → *write* (escrever)  
 - **x** → *execute* (executar)
 
 Para arquivos:
+
 - **r** → pode abrir e ler  
 - **w** → pode editar  
 - **x** → pode executar (útil para scripts)
@@ -561,15 +626,17 @@ Exemplo prático:
 
 ---
 
-**Analogia:**  
-Pense em uma pasta como uma sala:  
+### ❗ Analogia
+
+Pense em uma pasta como uma sala:
+
 - **x** é a chave da porta (entrar)  
 - **r** é poder olhar o que tem dentro  
 - **w** é poder mexer nos objetos da sala
 
 ---
 
-# 🔧 14. Alterar permissões — `chmod`
+## 🔧 14. Alterar permissões — `chmod`
 
 O comando `chmod` significa **change mode**  
 → literalmente: *“mudar o modo (permissões) de um arquivo ou pasta”*.
@@ -578,19 +645,23 @@ Ele permite adicionar ou remover permissões de **leitura (r)**, **escrita (w)**
 
 ---
 
-## ▶️ Dar permissão de execução
+### ▶️ Dar permissão de execução
+
 ```bash
 chmod +x script.sh
 ```
+
 Adiciona `x` (executar) ao arquivo.  
 Necessário para rodar scripts no Linux.
 
 ---
 
-## ⛔ Remover permissão de escrita
+### ⛔ Remover permissão de escrita
+
 ```bash
 chmod -w arquivo.txt
 ```
+
 Remove a permissão de escrita — o arquivo não poderá ser modificado.
 
 ---
@@ -599,7 +670,7 @@ Remove a permissão de escrita — o arquivo não poderá ser modificado.
 
 Cada permissão tem um valor:
 
-```
+```bash
 r = 4
 w = 2
 x = 1
@@ -612,6 +683,7 @@ Somando esses valores, você define as permissões de:
 3. **outros**
 
 Exemplo:
+
 ```bash
 chmod 755 arquivo.sh
 ```
@@ -623,13 +695,14 @@ Interpretação:
 - **5** → outros: 4 (r) + 1 (x) = **r-x**
 
 Resultado final:
-```
+
+```bash
 rwxr-xr-x
 ```
 
 ---
 
-# 🖥️ 15. Diferenças entre Linux/Bash, CMD e PowerShell
+## 🖥️ 15. Diferenças entre Linux/Bash, CMD e PowerShell
 
 Ao usar Git Bash no Windows, você está usando um terminal **estilo Linux**, com comandos POSIX.  
 Isso é diferente do **CMD** (linha de comando antiga do Windows) e do **PowerShell** (linha moderna e orientada a objetos).
@@ -637,7 +710,7 @@ Isso é diferente do **CMD** (linha de comando antiga do Windows) e do **PowerSh
 A tabela abaixo mostra os comandos equivalentes mais comuns:
 
 | Ação | Linux / Bash | Windows CMD | PowerShell |
-|------|--------------|-------------|------------|
+| :--- | :--- | :--- | :--- |
 | Mostrar diretório atual | `pwd` | `cd` | `Get-Location` |
 | Listar arquivos | `ls` | `dir` | `Get-ChildItem` (ou `ls`) |
 | Mudar de pasta | `cd pasta` | `cd pasta` | `Set-Location pasta` (ou `cd`) |
@@ -652,21 +725,24 @@ A tabela abaixo mostra os comandos equivalentes mais comuns:
 
 ---
 
-## 🧠 Observações importantes
+### 🧠 Observações importantes
 
-### ✔ Git Bash aceita comandos Linux  
+#### ✔ Git Bash aceita comandos Linux
+
 Por isso `ls`, `pwd`, `touch`, `rm` funcionam no Windows **quando você usa Git Bash**.
 
-### ✔ CMD é mais limitado  
+#### ✔ CMD é mais limitado
+
 É mais antigo, não suporta muitos recursos modernos e não entende comandos POSIX.
 
-### ✔ PowerShell é poderoso, mas diferente  
+#### ✔ PowerShell é poderoso, mas diferente
+
 Ele trabalha com **objetos**, não texto puro.  
 Por isso seus comandos são mais longos, porém mais robustos.
 
 ---
 
-## 🎯 Quando usar cada um?
+### 🎯 Quando usar cada um?
 
 - **Git Bash** → ideal para Git, desenvolvimento, scripts simples, comandos Linux.  
 - **CMD** → só use se for obrigado (scripts antigos, ferramentas legadas).  
@@ -681,7 +757,7 @@ PowerShell é como um carro moderno automático — mais complexo, mas muito mai
 
 ---
 
-# 🌐 16. O que são comandos POSIX
+## 🌐 16. O que são comandos POSIX
 
 **POSIX** (*Portable Operating System Interface*) é um conjunto de normas que define como sistemas do tipo Unix devem funcionar.  
 Ele padroniza:
@@ -695,7 +771,7 @@ Em outras palavras: **POSIX é o “padrão” que faz comandos como `ls`, `cd`,
 
 ---
 
-## 🐧 POSIX no Linux
+### 🐧 POSIX no Linux
 
 No Linux, os comandos POSIX são **nativos** e totalmente integrados ao sistema. Exemplos:
 
@@ -712,7 +788,7 @@ Eles são rápidos, completos e 100% compatíveis com o padrão.
 
 ---
 
-## 💻 POSIX no Git Bash (Windows)
+### 💻 POSIX no Git Bash (Windows)
 
 O **Git Bash** é um ambiente que simula um terminal Unix dentro do Windows.  
 Ele inclui:
@@ -733,10 +809,10 @@ Mas com algumas diferenças:
 
 ---
 
-## 🧩 Resumo
+### 🧩 Resumo
 
 | Ambiente | O que é | Suporte a POSIX |
-|----------|---------|------------------|
+| :--- | :--- | :--- |
 | **Linux** | Sistema operacional completo | 100% compatível |
 | **Git Bash** | Emulador Unix no Windows | Compatível, mas com adaptações |
 | **CMD** | Shell antigo do Windows | Não compatível |
@@ -755,8 +831,10 @@ Saber o que é POSIX ajuda quando você:
 
 ---
 
-# 🎉 Fim do guia
+## 🎉 Fim do guia
 
 Agora você domina os comandos essenciais para navegar, criar, mover, copiar, apagar e proteger arquivos no terminal — além de entender as diferenças entre Linux/Bash, CMD, PowerShell e o padrão POSIX.
 
 Com esse conhecimento, você está preparado para trabalhar com Linux, Git, automações simples e ambientes de desenvolvimento de forma muito mais segura e consciente.
+
+---
