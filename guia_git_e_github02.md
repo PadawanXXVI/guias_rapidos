@@ -207,57 +207,61 @@ Changes not staged for commit:
 git commit --amend
 ```
 
+Esse comando permite editar o último commit, seja para ajustar a mensagem ou incluir mudanças que você esqueceu de adicionar.
+
 Saída típica:
 
 ```bash
 [main 3f2a1b7] Adiciona função soma e utilidades
  2 files changed, 10 insertions(+)
-```
-
----
+ ```
 
 ### ✔ 4.2. Commit com título + descrição
+
+Você pode escrever uma mensagem de commit com título e corpo, útil para explicar melhor mudanças mais complexas:
 
 ```bash
 git commit -m "Implementa login" -m "Adiciona validação de senha."
 ```
 
----
+O primeiro `-m` é o título; o segundo é a descrição.
 
 ### ✔ 4.3. Criar commits vazios
 
-```bash
-git commit --allow-empty -m "Commit vazio"
-```
+Commits vazios são úteis para marcar eventos, testar pipelines ou registrar checkpoints:
 
----
+```bash
+git commit --allow-empty -m
+```
 
 ## 🔍 5. Ver diferenças antes de commitar
 
-### ✔ Working directory (não adicionado)
+### ✔ Working directory (mudanças ainda não adicionadas)
+
+Mostra o que mudou nos arquivos **antes** de entrar na staging area:
 
 ```bash
 git diff
 ```
 
-Saída:
+Exemplo de saída:
 
-```diff
+```bash
 +def sub(a, b):
 +    return a - b
 ```
 
----
+### ✔ Staging area (mudanças que serão commitadas)
 
-### ✔ Staging area (será commitado)
+Mostra exatamente o que já está preparado para o próximo commit:
 
 ```bash
-git diff --staged
+git diff 
 ```
 
----
-
 ## 🗑️ 6. Remover arquivos da staging area
+
+Use este comando quando você adicionou algo por engano à staging area e quer **desfazer o `git add`**, mas **sem perder as alterações** feitas no arquivo:
 
 ```bash
 git restore --staged arquivo.py
@@ -270,23 +274,25 @@ Changes not staged for commit:
         modified:   arquivo.py
 ```
 
----
+Isso significa que o arquivo voltou ao estado modified, fora da staging area, mas suas mudanças continuam no working directory.
 
 ## 🧹 7. Desfazendo commits (com segurança)
 
-### ✔ 7.1. Desfazer commit criando outro (seguro)
+### ✔ 7.1. Desfazer um commit criando outro (seguro)
 
 ```bash
 git revert <hash>
 ```
 
-Saída:
+O revert cria um novo commit que desfaz as mudanças do commit original, preservando todo o histórico.
+
+É a forma segura de desfazer algo, especialmente em repositórios compartilhados.
+
+Saída típica:
 
 ```bash
 [main 7f8e9d1] Revert "Adiciona função soma"
 ```
-
----
 
 ### ✔ 7.2. Voltar no tempo apagando commits (perigoso)
 
@@ -294,26 +300,26 @@ Saída:
 git reset --hard <hash>
 ```
 
+O reset --hard move o ponteiro do branch para um commit anterior e apaga todos os commits posteriores, além de descartar mudanças no working directory.
+
+É poderoso, mas perigoso — use apenas quando tiver certeza absoluta.
+
 Saída:
 
 ```bash
 HEAD is now at 0f9e8d7 Cria arquivo inicial
 ```
 
----
-
 ## 🎯 8. Resumo do fluxo avançado
 
 ```bash
-git status              → veja o estado
-git diff                → veja o que mudou
-git add -p              → adicione trechos específicos
-git commit -m "msg"     → commit claro
-git log --oneline       → revise o histórico
+git status              → veja o estado dos arquivos
+git diff                → veja o que mudou no working directory
+git add -p              → adicione apenas trechos específicos
+git commit -m "msg"     → crie commits claros e organizados
+git log --oneline       → revise o histórico rapidamente
 git revert <hash>       → desfaça commits com segurança
 ```
-
----
 
 ## 🎉 Fim do Guia 2 — Staging Area e Commits Avançados
 
