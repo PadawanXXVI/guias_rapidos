@@ -5,12 +5,12 @@ Elas permitem criar linhas paralelas de desenvolvimento sem bagunçar o código 
 
 ---
 
-# 🌱 1. O que é uma branch (de verdade)
+## 🌱 1. O que é uma branch (de verdade)
 
 Uma **branch** é uma linha do tempo independente dentro do seu projeto.  
 Ela permite que você desenvolva algo novo **sem mexer no código principal**.
 
-## ✔ Analogia simples (e poderosa)
+### ✔ Analogia simples (e poderosa)
 
 Imagine que o projeto é uma estrada:
 
