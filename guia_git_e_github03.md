@@ -1,13 +1,15 @@
 # 🌿 Guia 3 — Branches, Navegação e Fluxo Profissional
 
-Branches são um dos conceitos mais importantes do Git.  
+Branches são um dos conceitos mais importantes do Git.
+
 Elas permitem criar linhas paralelas de desenvolvimento sem bagunçar o código principal.
 
 ---
 
 ## 🌱 1. O que é uma branch (de verdade)
 
-Uma **branch** é uma linha do tempo independente dentro do seu projeto.  
+Uma **branch** é uma linha do tempo independente dentro do seu projeto.
+
 Ela permite que você desenvolva algo novo **sem mexer no código principal**.
 
 ### ✔ Analogia simples (e poderosa)
@@ -24,7 +26,7 @@ Essa metáfora explica tudo o que importa:
 - trabalha sem atrapalhar ninguém  
 - depois junta tudo de volta  
 
-## ✔ Por que branches existem?
+### ✔ Por que branches existem?
 
 Branches permitem:
 
@@ -34,7 +36,7 @@ Branches permitem:
 - trabalhar em equipe sem conflitos constantes  
 - manter o código principal sempre estável  
 
-## ✔ O que você ganha usando branches?
+### ✔ O que você ganha usando branches?
 
 - organização  
 - segurança  
@@ -44,7 +46,7 @@ Branches permitem:
 
 Branches são a base de qualquer fluxo moderno de Git — desde projetos solo até equipes grandes.
 
-# 📌 2. Ver branches existentes — `git branch`
+## 📌 2. Ver branches existentes — `git branch`
 
 O comando abaixo mostra **todas as branches locais** do seu repositório:
 
@@ -54,7 +56,7 @@ git branch
 
 ### ✔ Exemplo real de saída
 
-```
+```bash
 * main
   feature-login
   ajustes-css
@@ -72,7 +74,7 @@ git branch
 
 Essa visualização é essencial para saber onde você está e quais branches existem no seu ambiente local.
 
-# 🆕 3. Criar uma branch — `git branch nome`
+## 🆕 3. Criar uma branch — `git branch nome`
 
 Para criar uma nova branch **sem trocar para ela**, use:
 
@@ -84,7 +86,7 @@ Se tudo der certo, **não aparece nenhuma saída** — comportamento normal do G
 
 ---
 
-## ✔ Verificando se a branch foi criada
+### ✔ Verificando se a branch foi criada
 
 ```bash
 git branch
@@ -92,12 +94,12 @@ git branch
 
 Saída típica:
 
-```
+```bash
   feature-login
 * main
 ```
 
-### ✔ Como interpretar
+### ✔ Como interpretar a saída
 
 - `feature-login` → a branch foi criada  
 - `* main` → você **ainda está na branch main**  
@@ -107,9 +109,10 @@ Saída típica:
 > Criar uma branch é como **abrir uma nova rua**, mas você ainda está parado na rua antiga.  
 > Para entrar na nova rua, você precisa usar `git switch` (veremos na próxima seção).
 
-# 🔄 4. Trocar de branch — `git switch` (recomendado)
+## 🔄 4. Trocar de branch — `git switch` (recomendado)
 
-Depois de criar uma branch, você precisa **entrar nela** para começar a trabalhar.  
+Depois de criar uma branch, você precisa **entrar nela** para começar a trabalhar.
+
 O comando recomendado para isso é:
 
 ```bash
@@ -118,7 +121,7 @@ git switch feature-login
 
 Saída típica:
 
-```
+```bash
 Switched to branch 'feature-login'
 ```
 
@@ -130,7 +133,7 @@ Switched to branch 'feature-login'
 
 ---
 
-## 🧩 Alternativa antiga (ainda funciona): `git checkout`
+### 🧩 Alternativa antiga (ainda funciona): `git checkout`
 
 Antes do Git 2.23, o comando usado para trocar de branch era:
 
@@ -147,7 +150,7 @@ Ele ainda funciona, mas hoje é **menos recomendado**, porque:
 > **Use `git switch` para trocar de branch.**  
 > Use `git checkout` apenas quando realmente precisar (ex.: restaurar arquivos).
 
-# ⚡ 5. Criar e trocar ao mesmo tempo — `git switch -c`
+## ⚡ 5. Criar e trocar ao mesmo tempo — `git switch -c`
 
 Se você quer **criar uma nova branch** e **entrar nela imediatamente**, use:
 
@@ -157,11 +160,11 @@ git switch -c feature-login
 
 Saída típica:
 
-```
+```bash
 Switched to a new branch 'feature-login'
 ```
 
-### ✔ O que aconteceu?
+### ✔ O que aconteceu aqui?
 
 - a branch `feature-login` foi criada  
 - você já entrou nela automaticamente  
@@ -177,7 +180,7 @@ Switched to a new branch 'feature-login'
 > Regra prática:  
 > **Se você vai criar uma branch e trabalhar nela imediatamente, use `git switch -c`.**
 
-# 🔍 6. Ver em qual branch estou — `git status`
+## 🔍 6. Ver em qual branch estou — `git status`
 
 A forma mais simples e direta de descobrir **em qual branch você está trabalhando** é usando:
 
@@ -185,9 +188,9 @@ A forma mais simples e direta de descobrir **em qual branch você está trabalha
 git status
 ```
 
-### ✔ Exemplo real de saída
+### ✔ Exemplo real de saída no terminal
 
-```
+```bash
 On branch feature-login
 ```
 
@@ -201,9 +204,10 @@ On branch feature-login
 > Sempre que estiver em dúvida sobre “onde você está”, rode `git status`.  
 > Ele mostra a branch atual **e** o estado dos arquivos — tudo em um só comando.
 
-# 🔀 7. Mesclar branches — `git merge`
+## 🔀 7. Mesclar branches — `git merge`
 
-Mesclar (fazer *merge*) significa **juntar o trabalho de uma branch dentro de outra**.  
+Mesclar (fazer *merge*) significa **juntar o trabalho de uma branch dentro de outra**.
+
 O fluxo profissional é sempre o mesmo:
 
 1. terminar o trabalho na branch secundária  
@@ -219,7 +223,7 @@ git merge feature-login
 
 Saída típica:
 
-```
+```bash
 Updating 1a2b3c4..9f8e7d6
 Fast-forward
  arquivo.py | 10 ++++++++++
@@ -235,11 +239,11 @@ Esse é o merge mais comum e mais simples.
 
 ---
 
-## ⚠ Quando há conflito
+### ⚠ Quando há conflito
 
 Se as duas branches modificaram a **mesma parte do mesmo arquivo**, o Git não sabe qual versão escolher:
 
-```
+```bash
 CONFLICT (content): Merge conflict in app.py
 ```
 
@@ -267,32 +271,24 @@ Esse commit **não é um commit comum** — ele representa a resolução do conf
 > Dica prática:  
 > Conflitos são normais. Eles não significam erro, apenas que duas pessoas mexeram no mesmo trecho de código.
 
-Observação:
+### Observação
 
 O que você faz na prática
-Abra o arquivo que está em conflito.
 
-Leia os dois blocos de código: o de cima (HEAD) e o de baixo (da branch que está sendo mesclada).
+- Abra o arquivo que está em conflito.
+- Leia os dois blocos de código: o de cima (HEAD) e o de baixo (da branch que está sendo mesclada).
+- Escolha o que deve permanecer:
+  - pode ficar só o código de cima,
+  - só o de baixo,
+  - ou uma combinação dos dois (às vezes você precisa juntar manualmente).
+- Apague todas as marcações (<<<<<<<, =======, >>>>>>>).
+- Salve o arquivo.
+- Rode:
 
-Escolha o que deve permanecer:
-
-pode ficar só o código de cima,
-
-só o de baixo,
-
-ou uma combinação dos dois (às vezes você precisa juntar manualmente).
-
-Apague todas as marcações (<<<<<<<, =======, >>>>>>>).
-
-Salve o arquivo.
-
-Rode:
-
-Código
-```bash
-git add app.py # git add nome_do_arquivo modificado
-git commit
-```
+  ```bash
+  git add app.py # git add nome_do_arquivo modificado
+  git commit
+  ```
 
 Exemplo simples
 
@@ -314,7 +310,7 @@ print("Olá")
 
 Pronto — isso é “resolver manualmente”.
 
-# 🗑️ 8. Deletar branches — `git branch -d`
+## 🗑️ 8. Deletar branches — `git branch -d`
 
 Depois que uma branch já foi **mesclada** (merge concluído), você pode removê-la com segurança:
 
@@ -324,11 +320,11 @@ git branch -d feature-login
 
 Saída típica:
 
-```
+```bash
 Deleted branch feature-login (was 9f8e7d6).
 ```
 
-### ✔ O que isso significa?
+### ✔ O que isso significa na prática?
 
 - a branch **feature-login** foi removida do seu repositório local  
 - o commit final dela era `9f8e7d6`  
@@ -336,11 +332,11 @@ Deleted branch feature-login (was 9f8e7d6).
 
 ---
 
-## ⚠ Quando a branch NÃO foi mesclada
+### ⚠ Quando a branch NÃO foi mesclada
 
 Se você tentar deletar uma branch que ainda não foi integrada, o Git protege você:
 
-```
+```bash
 error: The branch 'feature-login' is not fully merged.
 ```
 
@@ -348,7 +344,7 @@ Isso evita perda acidental de trabalho.
 
 ---
 
-## 🔥 Forçar a remoção — `git branch -D`
+### 🔥 Forçar a remoção — `git branch -D`
 
 Se você tem certeza absoluta de que quer apagar a branch mesmo sem merge:
 
@@ -368,20 +364,21 @@ git branch -D feature-login
 > **Use `-d` sempre que possível.**  
 > Use `-D` apenas quando tiver certeza de que não precisa mais daquela branch.
 
-# 🌐 9. Branch local vs branch remota (diferença clara e como se comunicam)
+## 🌐 9. Branch local vs branch remota (diferença clara e como se comunicam)
 
-Essa é uma das partes mais importantes do Git:  
+Essa é uma das partes mais importantes do Git:
+
 **entender que uma branch local e uma branch remota são coisas diferentes**, mesmo que tenham o mesmo nome.
 
 ---
 
-# 📌 Branch local
+### 📌 Branch local
 
 É a branch que existe **somente no seu computador**.
 
 Exemplo de branches locais:
 
-```
+```bash
 main
 feature-login
 ajustes-css
@@ -391,13 +388,13 @@ Essas branches só aparecem para você — ninguém no GitHub vê isso até voc�
 
 ---
 
-# 📌 Branch remota
+### 📌 Branch remota
 
 É a branch que existe **no servidor**, normalmente no GitHub.
 
 Exemplo:
 
-```
+```bash
 origin/main
 origin/feature-login
 ```
@@ -409,7 +406,7 @@ O prefixo `origin/` significa:
 
 ---
 
-# 🔗 Como local e remoto se comunicam
+### 🔗 Como local e remoto se comunicam
 
 Quando você cria uma branch local:
 
@@ -427,7 +424,7 @@ git push -u origin feature-login
 
 Saída típica:
 
-```
+```bash
 new branch 'feature-login' created on remote
 ```
 
@@ -439,6 +436,7 @@ Agora você tem:
 E o `-u` faz algo muito importante:
 
 ### ✔ Ele cria o “vínculo” entre as duas branches  
+
 Isso significa que, a partir de agora:
 
 - `git push` sabe para onde enviar  
@@ -447,7 +445,7 @@ Isso significa que, a partir de agora:
 
 ---
 
-# 📥 Baixar branches remotas criadas por outras pessoas
+### 📥 Baixar branches remotas criadas por outras pessoas
 
 Se alguém criou uma branch no GitHub, você precisa **atualizar a lista de branches remotas**:
 
@@ -463,7 +461,7 @@ git branch -r
 
 Exemplo:
 
-```
+```bash
 origin/main
 origin/feature-login
 ```
@@ -476,7 +474,7 @@ git switch feature-login
 
 ---
 
-# 🆕 Quando a branch remota NÃO existe localmente
+### 🆕 Quando a branch remota NÃO existe localmente
 
 Se você ainda não tem a branch local correspondente:
 
@@ -491,9 +489,9 @@ Isso significa:
 
 ---
 
-# 🧠 Resumo visual da comunicação
+### 🧠 Resumo visual da comunicação
 
-```
+```bash
 LOCAL  → git push →  REMOTO
 REMOTO → git pull →  LOCAL
 REMOTO → git fetch → atualiza referências
@@ -505,14 +503,14 @@ REMOTO → git fetch → atualiza referências
 
 ---
 
-# ✔ Regra prática para nunca esquecer
+### ✔ Regra prática para nunca esquecer
 
 - **Branch local** = só você vê  
 - **Branch remota** = está no GitHub  
 - Elas só se conectam quando você faz:  
   `git push -u origin nome-da-branch`
 
-# 🔄 10. Como funciona a comunicação entre local e remoto
+## 🔄 10. Como funciona a comunicação entre local e remoto
 
 O Git trabalha sempre com **duas versões da mesma branch**:
 
@@ -523,7 +521,7 @@ Os comandos abaixo controlam como essas duas versões trocam informações.
 
 ---
 
-## 📤 `git push` — envia do local → para o remoto
+### 📤 `git push` — envia do local → para o remoto
 
 Quando você faz:
 
@@ -553,7 +551,7 @@ Significa:
 
 > “Baixe os commits do GitHub e integre na minha branch local.”
 
-### ✔ O que realmente acontece
+### ✔ O que realmente acontece ao fazer `git push`
 
 - baixa commits novos  
 - faz merge automático (ou rebase, dependendo da configuração)  
@@ -561,7 +559,7 @@ Significa:
 
 ---
 
-## 🔎 `git fetch` — atualiza referências remotas (sem alterar sua branch)
+### 🔎 `git fetch` — atualiza referências remotas (sem alterar sua branch)
 
 ```bash
 git fetch
@@ -571,7 +569,7 @@ Significa:
 
 > “Atualize a lista de branches e commits do servidor, mas **não mexa na minha branch atual**.”
 
-### ✔ O que realmente acontece
+### ✔ O que realmente acontece com o `git fetch`
 
 - baixa informações do remoto  
 - atualiza `origin/main`, `origin/feature-x`, etc.  
@@ -580,9 +578,9 @@ Significa:
 
 ---
 
-## 🧠 Resumo rápido
+### 🧠 Resumo rápido
 
-```
+```bash
 git push   → envia commits do local para o remoto
 git pull   → baixa commits do remoto e integra no local
 git fetch  → atualiza informações do remoto sem alterar nada localmente
@@ -593,25 +591,28 @@ git fetch  → atualiza informações do remoto sem alterar nada localmente
 > Use `pull` para trazer as mudanças.  
 > Use `push` para enviar suas mudanças.**
 
-# 🧭 11. Fluxo profissional de trabalho com branches
+## 🧭 11. Fluxo profissional de trabalho com branches
 
 Equipes profissionais usam branches para organizar o desenvolvimento e manter o código sempre estável.  
 O modelo mais comum é baseado em **branches com funções específicas**.
 
 ---
 
-# 🌳 Branches principais do fluxo profissional
+### 🌳 Branches principais do fluxo profissional
 
-## `main`
+#### `main`
+
 - código estável  
 - representa o que está em produção  
 - deve estar sempre funcionando  
 
-## `develop` (opcional, mas comum em equipes)
+#### `develop` (opcional, mas comum em equipes)
+
 - integra várias features antes de ir para a `main`  
 - funciona como um “ambiente de testes” do time  
 
-## `feature/*`
+#### `feature/*`
+
 - usadas para desenvolver novas funcionalidades  
 - cada funcionalidade tem sua própria branch  
 - exemplos:
@@ -619,23 +620,25 @@ O modelo mais comum é baseado em **branches com funções específicas**.
   - `feature/dashboard`
   - `feature/export-relatorios`
 
-## `hotfix/*`
+#### `hotfix/*`
+
 - correções urgentes em produção  
 - criadas a partir da `main`  
 - exemplo:
   - `hotfix/corrige-erro-de-login`
 
-## `release/*`
+#### `release/*`
+
 - preparação para uma nova versão  
 - ajustes finais antes de enviar para produção  
 
 ---
 
-# 🔄 Fluxo típico de trabalho com branches
+### 🔄 Fluxo típico de trabalho com branches
 
 Este é o fluxo mais comum e recomendado:
 
-```
+```bash
 git switch -c feature/login     ← cria e entra na branch da nova funcionalidade
 ... trabalha, faz commits ...
 git switch main                 ← volta para a branch principal
@@ -644,7 +647,7 @@ git push                        ← envia para o GitHub
 git branch -d feature/login     ← remove a branch local
 ```
 
-### ✔ O que esse fluxo garante?
+#### ✔ O que esse fluxo garante?
 
 - cada funcionalidade fica isolada  
 - o código da `main` permanece estável  
@@ -654,7 +657,7 @@ git branch -d feature/login     ← remove a branch local
 
 ---
 
-# 🧠 Regra prática para nunca esquecer
+### 🧠 Regra prática para nunca esquecer
 
 - **feature** → criar coisas novas  
 - **hotfix** → corrigir emergências  
@@ -664,11 +667,11 @@ git branch -d feature/login     ← remove a branch local
 
 Esse fluxo é usado em empresas, times grandes e projetos open source.
 
-# 🎯 Resumo do Guia 3
+## 🎯 Resumo do Guia 3
 
 Os comandos essenciais para trabalhar com branches no Git:
 
-```
+```bash
 git branch                → lista branches locais
 git branch nome           → cria uma nova branch local
 git switch nome           → troca para outra branch
@@ -682,7 +685,7 @@ git pull                  → baixa e integra mudanças do remoto
 
 ---
 
-# 🎉 Fim do Guia 3 — Branches e Navegação
+## 🎉 Fim do Guia 3 — Branches e Navegação
 
 Agora você entende:
 
@@ -695,8 +698,10 @@ Agora você entende:
 
 Com isso, você fecha o ciclo essencial do Git:
 
-```
+```bash
 status → staging → commits → branches → merges → remoto
 ```
 
 Esse conhecimento é a base para trabalhar com Git de forma segura, organizada e profissional.
+
+---
