@@ -4,7 +4,7 @@ Este guia aprofunda o funcionamento da **staging area**, explica como o Git regi
 
 ---
 
-# 🧠 1. O que é a Staging Area (de verdade)
+## 🧠 1. O que é a Staging Area (de verdade)
 
 A staging area é uma área intermediária entre:
 
@@ -17,6 +17,7 @@ Ela funciona como uma bandeja de supermercado:
 - depois confirma tudo de uma vez no caixa (git commit)
 
 Essa etapa intermediária existe para dar controle total sobre o que vai entrar no commit.
+
 Com ela, você pode:
 
 - escolher exatamente quais arquivos (ou partes deles) serão commitados
@@ -29,9 +30,10 @@ Você pode ver o que está na staging area usando:
 ```bash
 git status
 ```
+
 Exemplo:
 
-```
+```bash
 Changes to be committed:
   new file:   script.py
 ```
@@ -40,35 +42,37 @@ Isso significa que `script.py` já está na staging area e será incluído no pr
 
 ---
 
-# 📁 2. Estados dos arquivos no Git
+## 📁 2. Estados dos arquivos no Git
 
 No Git, cada arquivo do projeto pode estar em um destes estados. Entender esses estados é essencial para dominar a staging area e os commits avançados.
 
 ---
 
-## 2.1. `untracked` — não rastreado
+### 2.1. `untracked` — não rastreado
 
 O arquivo existe no diretório, mas o Git ainda não o acompanha.
 
 ```bash
 git status
 ```
+
 Saída:
 
-```
+```bash
 Untracked files:
         script.py
 ```
 
 Isso significa que `script.py` ainda não faz parte do repositório.
 
-## 2.2. modified — modificado, mas não preparado
+### 2.2. modified — modificado, mas não preparado
 
 O arquivo foi alterado, mas ainda não está na staging area.
 
 ```bash
 git status
 ```
+
 Saída:
 
 ```bash
@@ -78,7 +82,7 @@ Changes not staged for commit:
 
 O Git detectou mudanças, mas você ainda não decidiu se elas vão para o próximo commit.
 
-## 2.3. staged — preparado para commit
+### 2.3. staged — preparado para commit
 
 O arquivo foi adicionado à staging area e será incluído no próximo commit.
 
@@ -89,14 +93,14 @@ git status
 
 Saída:
 
-```
+```bash
 Changes to be committed:
         modified:   app.py
 ```
 
 Agora o Git sabe exatamente qual versão de `app.py` você quer registrar.
 
-## 2.4. committed — registrado no histórico
+### 2.4. committed — registrado no histórico
 
 O arquivo foi salvo no repositório Git e não há mudanças pendentes.
 
@@ -104,6 +108,7 @@ O arquivo foi salvo no repositório Git e não há mudanças pendentes.
 git commit -m "Atualiza app"
 git status
 ```
+
 Saída:
 
 ```bash
@@ -115,9 +120,9 @@ Isso indica que tudo está sincronizado entre o `working directory`, a `staging 
 
 ---
 
-# ➕ 3. Adicionando mudanças de forma avançada
+## ➕ 3. Adicionando mudanças de forma avançada
 
-## ✔ 3.1. Adicionar um arquivo específico
+### ✔ 3.1. Adicionar um arquivo específico
 
 ```bash
 git add arquivo.py
@@ -132,7 +137,7 @@ Changes to be committed:
 
 ---
 
-## ✔ 3.2. Adicionar todos os arquivos modificados
+### ✔ 3.2. Adicionar todos os arquivos modificados
 
 ```bash
 git add .
@@ -149,7 +154,7 @@ Changes to be committed:
 
 ---
 
-## ✔ 3.3. Adicionar apenas parte de um arquivo (interativo)
+### ✔ 3.3. Adicionar apenas parte de um arquivo (interativo)
 
 ```bash
 git add -p arquivo.py
@@ -171,7 +176,7 @@ Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]?
 
 ---
 
-## ✔ 3.4. Ver o que está na staging area
+### ✔ 3.4. Ver o que está na staging area
 
 ```bash
 git diff --staged
@@ -179,7 +184,7 @@ git diff --staged
 
 ---
 
-## ✔ 3.5. Remover algo da staging area
+### ✔ 3.5. Remover algo da staging area
 
 ```bash
 git restore --staged arquivo.py
@@ -194,9 +199,9 @@ Changes not staged for commit:
 
 ---
 
-# 💾 4. Commits avançados
+## 💾 4. Commits avançados
 
-## ✔ 4.1. Editar o último commit (`--amend`)
+### ✔ 4.1. Editar o último commit (`--amend`)
 
 ```bash
 git commit --amend
@@ -211,7 +216,7 @@ Saída típica:
 
 ---
 
-## ✔ 4.2. Commit com título + descrição
+### ✔ 4.2. Commit com título + descrição
 
 ```bash
 git commit -m "Implementa login" -m "Adiciona validação de senha."
@@ -219,7 +224,7 @@ git commit -m "Implementa login" -m "Adiciona validação de senha."
 
 ---
 
-## ✔ 4.3. Criar commits vazios
+### ✔ 4.3. Criar commits vazios
 
 ```bash
 git commit --allow-empty -m "Commit vazio"
@@ -227,9 +232,9 @@ git commit --allow-empty -m "Commit vazio"
 
 ---
 
-# 🔍 5. Ver diferenças antes de commitar
+## 🔍 5. Ver diferenças antes de commitar
 
-## ✔ Working directory (não adicionado)
+### ✔ Working directory (não adicionado)
 
 ```bash
 git diff
@@ -244,7 +249,7 @@ Saída:
 
 ---
 
-## ✔ Staging area (será commitado)
+### ✔ Staging area (será commitado)
 
 ```bash
 git diff --staged
@@ -252,7 +257,7 @@ git diff --staged
 
 ---
 
-# 🗑️ 6. Remover arquivos da staging area
+## 🗑️ 6. Remover arquivos da staging area
 
 ```bash
 git restore --staged arquivo.py
@@ -267,9 +272,9 @@ Changes not staged for commit:
 
 ---
 
-# 🧹 7. Desfazendo commits (com segurança)
+## 🧹 7. Desfazendo commits (com segurança)
 
-## ✔ 7.1. Desfazer commit criando outro (seguro)
+### ✔ 7.1. Desfazer commit criando outro (seguro)
 
 ```bash
 git revert <hash>
@@ -283,7 +288,7 @@ Saída:
 
 ---
 
-## ✔ 7.2. Voltar no tempo apagando commits (perigoso)
+### ✔ 7.2. Voltar no tempo apagando commits (perigoso)
 
 ```bash
 git reset --hard <hash>
@@ -297,9 +302,9 @@ HEAD is now at 0f9e8d7 Cria arquivo inicial
 
 ---
 
-# 🎯 8. Resumo do fluxo avançado
+## 🎯 8. Resumo do fluxo avançado
 
-```
+```bash
 git status              → veja o estado
 git diff                → veja o que mudou
 git add -p              → adicione trechos específicos
@@ -310,7 +315,7 @@ git revert <hash>       → desfaça commits com segurança
 
 ---
 
-# 🎉 Fim do Guia 2 — Staging Area e Commits Avançados
+## 🎉 Fim do Guia 2 — Staging Area e Commits Avançados
 
 Agora você entende:
 
@@ -324,3 +329,5 @@ Agora você entende:
 - como trabalhar com commits de forma profissional  
 
 Esse conhecimento é essencial para manter um histórico limpo, organizado e fácil de entender.
+
+---
