@@ -38,20 +38,25 @@ Evite abrir issues duplicadas — verifique antes se já existe algo relacionado
 
 Para enviar um PR:
 
-1. Faça um **fork** do repositório  
-2. Crie uma branch descritiva:
+### 1. Faça um **fork** do repositório
+
+### 2. Crie uma branch descritiva
 
 ```bash
 git checkout -b docs/melhoria-guia-01
 ```
 
-3. Realize as alterações  
-4. Garanta que o texto esteja:
+### ⚡ 3. Realize as alterações
+
+### 4. Garanta que o texto esteja
+
 - Claro  
 - Coeso  
 - Sem erros de digitação  
 - Formatado corretamente  
-5. Envie o PR com:
+
+### 5. Envie o PR com
+
 - Descrição objetiva  
 - Motivação da mudança  
 - Arquivos alterados listados  
@@ -123,3 +128,5 @@ ou entre em contato diretamente pelo GitHub.
 ---
 
 Obrigado por ajudar a melhorar os **Guias Rápidos**!
+
+---
