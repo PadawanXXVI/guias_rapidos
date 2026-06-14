@@ -118,7 +118,6 @@ Se tiver dúvidas sobre como contribuir, abra uma Issue com o prefixo:
 
 `[question]`
 
-
 ou entre em contato diretamente pelo GitHub.
 
 ---
