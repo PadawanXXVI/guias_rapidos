@@ -51,6 +51,8 @@ Branches permitem:
 
 Branches são a base de qualquer fluxo moderno de Git — desde projetos solo até equipes grandes.
 
+---
+
 ## 📌 2. Ver branches existentes — `git branch`
 
 O comando abaixo mostra **todas as branches locais** do seu repositório:
@@ -82,6 +84,8 @@ Importante:
   - git fetch → atualiza a lista de branches remotas
 
 Saber visualizar suas branches é essencial para navegar com segurança e entender onde você está trabalhando dentro do projeto.
+
+---
 
 ## 🆕 3. Criar uma branch — `git branch nome`
 
@@ -118,6 +122,8 @@ Criar uma branch é como abrir uma nova rua, mas você ainda está parado na rua
 
 Para entrar na nova rua, você precisa usar git switch (na próxima seção).
 
+---
+
 ## 🔄 4. Trocar de branch — `git switch` (recomendado)
 
 Depois de criar uma branch, você precisa **entrar nela** para começar a trabalhar.
@@ -136,13 +142,11 @@ Switched to branch 'feature-login'
 
 ### ✔ O que aconteceu?
 
-- agora você está **dentro da branch `feature-login`**  
-- qualquer commit que fizer será registrado nessa branch  
-- sua pasta de trabalho muda para refletir o conteúdo dessa branch  
+- agora você está dentro da branch feature-login
+- qualquer commit que fizer será registrado nessa branch
+- sua pasta de trabalho muda para refletir o conteúdo dessa branch
 
----
-
-### 🧩 Alternativa antiga (ainda funciona): `git checkout`
+### 🧩 Alternativa antiga (ainda funciona): git checkout
 
 Antes do Git 2.23, o comando usado para trocar de branch era:
 
@@ -150,14 +154,17 @@ Antes do Git 2.23, o comando usado para trocar de branch era:
 git checkout feature-login
 ```
 
-Ele ainda funciona, mas hoje é **menos recomendado**, porque:
+Ele ainda funciona, mas hoje é menos recomendado, porque:
 
-- `checkout` faz muitas coisas diferentes (trocar branch, restaurar arquivos, criar branch…)  
-- `switch` é mais claro e mais seguro para navegação entre branches  
+- checkout faz muitas coisas diferentes (trocar branch, restaurar arquivos, criar branch…)
+- switch é mais claro e mais seguro para navegação entre branches
 
-> Regra prática:  
-> **Use `git switch` para trocar de branch.**  
-> Use `git checkout` apenas quando realmente precisar (ex.: restaurar arquivos).
+### Regra prática
+
+- Use git switch para trocar de branch.  
+- Use git checkout apenas quando realmente precisar (ex.: restaurar arquivos).
+
+---
 
 ## ⚡ 5. Criar e trocar ao mesmo tempo — `git switch -c`
 
@@ -167,7 +174,7 @@ Se você quer **criar uma nova branch** e **entrar nela imediatamente**, use:
 git switch -c feature-login
 ```
 
-Saída típica:
+### Saída típica
 
 ```bash
 Switched to a new branch 'feature-login'
@@ -175,19 +182,22 @@ Switched to a new branch 'feature-login'
 
 ### ✔ O que aconteceu aqui?
 
-- a branch `feature-login` foi criada  
-- você já entrou nela automaticamente  
-- sua pasta de trabalho agora reflete o conteúdo dessa nova branch  
+- a branch feature-login foi criada
+- você já entrou nela automaticamente
+- sua pasta de trabalho agora reflete o conteúdo dessa nova branch
 
 ### ✔ Quando usar esse comando?
 
-- ao iniciar uma nova funcionalidade  
-- ao começar um ajuste isolado  
-- ao criar branches de correção (`hotfix/*`)  
-- sempre que quiser agilizar o fluxo sem rodar dois comandos (`git branch` + `git switch`)
+- ao iniciar uma nova funcionalidade
+- ao começar um ajuste isolado
+- ao criar branches de correção (hotfix/*)
+- sempre que quiser agilizar o fluxo sem rodar dois comandos (git branch + git switch)
 
-> Regra prática:  
-> **Se você vai criar uma branch e trabalhar nela imediatamente, use `git switch -c`.**
+### ❗ Regra prática
+
+Se você vai criar uma branch e trabalhar nela imediatamente, use git switch -c.
+
+---
 
 ## 🔍 6. Ver em qual branch estou — `git status`
 
@@ -205,17 +215,21 @@ On branch feature-login
 
 ### ✔ O que isso significa?
 
-- você está atualmente na branch **feature-login**  
-- qualquer commit que fizer será registrado nessa branch  
-- sua pasta de trabalho reflete o conteúdo dessa branch  
+- você está atualmente na branch feature-login
+- qualquer commit que fizer será registrado nessa branch
+- sua pasta de trabalho reflete o conteúdo dessa branch
 
-> Dica prática:  
-> Sempre que estiver em dúvida sobre “onde você está”, rode `git status`.  
-> Ele mostra a branch atual **e** o estado dos arquivos — tudo em um só comando.
+### 💡 Dica prática
+
+Sempre que estiver em dúvida sobre “onde você está”, rode git status.
+
+Ele mostra a branch atual e o estado dos arquivos — tudo em um só comando.
+
+---
 
 ## 🔀 7. Mesclar branches — `git merge`
 
-Mesclar (fazer *merge*) significa **juntar o trabalho de uma branch dentro de outra**.
+Mesclar (*merge*) significa **juntar o trabalho de uma branch dentro de outra**.
 
 O fluxo profissional é sempre o mesmo:
 
@@ -230,7 +244,7 @@ git switch main
 git merge feature-login
 ```
 
-Saída típica:
+### 📤 Saída típica
 
 ```bash
 Updating 1a2b3c4..9f8e7d6
@@ -240,17 +254,15 @@ Fast-forward
 
 ### ✔ O que significa essa saída?
 
-- `Updating 1a2b3c4..9f8e7d6` → o Git está avançando o ponteiro da branch  
-- `Fast-forward` → não houve divergência; o Git apenas “andou para frente”  
-- `arquivo.py | 10 ++++++++++` → 10 linhas adicionadas nesse arquivo  
+- Updating 1a2b3c4..9f8e7d6 → o Git avançou o ponteiro da branch
+- Fast-forward → não houve divergência; o Git apenas “andou para frente”
+- arquivo.py | 10 ++++++++++ → 10 linhas foram adicionadas
 
-Esse é o merge mais comum e mais simples.
-
----
+Esse é o merge mais simples e mais comum.
 
 ### ⚠ Quando há conflito
 
-Se as duas branches modificaram a **mesma parte do mesmo arquivo**, o Git não sabe qual versão escolher:
+Se as duas branches modificaram a mesma parte do mesmo arquivo, o Git não sabe qual versão escolher:
 
 ```bash
 CONFLICT (content): Merge conflict in app.py
@@ -258,7 +270,7 @@ CONFLICT (content): Merge conflict in app.py
 
 O arquivo ficará assim:
 
-```text
+```bash
 <<<<<<< HEAD
 código da branch atual
 =======
@@ -266,7 +278,19 @@ código da branch que está sendo mesclada
 >>>>>>> feature-login
 ```
 
-Você resolve manualmente, depois confirma a resolução:
+### ✔ Como resolver
+
+- Abra o arquivo em conflito.
+  - Analise os dois blocos:
+  - HEAD → código da branch atual
+  - feature-login → código da branch que está sendo mesclada
+- Escolha o que deve permanecer:
+  - só o código de cima
+  - só o de baixo
+  - ou uma combinação dos dois
+- Remova as marcações (<<<<<<<, =======, >>>>>>>).
+- Salve o arquivo.
+- Finalize:
 
 ```bash
 git add app.py
@@ -275,35 +299,17 @@ git commit
 
 ### ✔ O commit finaliza o merge
 
-Esse commit **não é um commit comum** — ele representa a resolução do conflito.
+Esse commit não é um commit comum — ele representa a resolução do conflito.
 
-> Dica prática:  
-> Conflitos são normais. Eles não significam erro, apenas que duas pessoas mexeram no mesmo trecho de código.
+### ❗ Dica prática
 
-### Observação
+Conflitos são normais. Eles não significam erro — apenas que duas pessoas mexeram no mesmo trecho de código.
 
-O que você faz na prática
+### 🧩 Exemplo simples de resolução
 
-- Abra o arquivo que está em conflito.
-- Leia os dois blocos de código: o de cima (HEAD) e o de baixo (da branch que está sendo mesclada).
-- Escolha o que deve permanecer:
-  - pode ficar só o código de cima,
-  - só o de baixo,
-  - ou uma combinação dos dois (às vezes você precisa juntar manualmente).
-- Apague todas as marcações (<<<<<<<, =======, >>>>>>>).
-- Salve o arquivo.
-- Rode:
+Arquivo com conflito:
 
-  ```bash
-  git add app.py # git add nome_do_arquivo modificado
-  git commit
-  ```
-
-Exemplo simples
-
-Se o arquivo está assim:
-
-```bash
+```python
 <<<<<<< HEAD
 print("Olá")
 =======
@@ -311,13 +317,15 @@ print("Hello")
 >>>>>>> feature-login
 ```
 
-E você quer manter só “Olá”, você deixa:
+Se você quer manter apenas “Olá”, deixe assim:
 
-```bash
+```python
 print("Olá")
 ```
 
-Pronto — isso é “resolver manualmente”.
+Pronto — conflito resolvido manualmente.
+
+---
 
 ## 🗑️ 8. Deletar branches — `git branch -d`
 
@@ -335,11 +343,9 @@ Deleted branch feature-login (was 9f8e7d6).
 
 ### ✔ O que isso significa na prática?
 
-- a branch **feature-login** foi removida do seu repositório local  
-- o commit final dela era `9f8e7d6`  
-- o Git só permite deletar porque ela **já foi mesclada**  
-
----
+- a branch feature-login foi removida do seu repositório local
+- o último commit dela era 9f8e7d6
+- o Git só permite deletar porque ela já foi mesclada
 
 ### ⚠ Quando a branch NÃO foi mesclada
 
@@ -351,9 +357,7 @@ error: The branch 'feature-login' is not fully merged.
 
 Isso evita perda acidental de trabalho.
 
----
-
-### 🔥 Forçar a remoção — `git branch -D`
+### 🔥 Forçar a remoção — git branch -D
 
 Se você tem certeza absoluta de que quer apagar a branch mesmo sem merge:
 
@@ -361,17 +365,20 @@ Se você tem certeza absoluta de que quer apagar a branch mesmo sem merge:
 git branch -D feature-login
 ```
 
-### ✔ Quando usar o `-D`?
+### ✔ Quando usar o -D?
 
-- branch criada por engano  
-- testes temporários  
-- trabalho descartado  
-- branch duplicada  
-- branch que não será mais usada  
+- branch criada por engano
+- testes temporários
+- trabalho descartado
+- branch duplicada
+- branch que não será mais usada
 
-> Regra prática:  
-> **Use `-d` sempre que possível.**  
-> Use `-D` apenas quando tiver certeza de que não precisa mais daquela branch.
+### ⚠️ Regra prática
+
+- Use -d sempre que possível.  
+- Use -D apenas quando tiver certeza de que não precisa mais daquela branch.
+
+---
 
 ## 🌐 9. Branch local vs branch remota (diferença clara e como se comunicam)
 
