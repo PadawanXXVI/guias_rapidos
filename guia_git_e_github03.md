@@ -1,15 +1,20 @@
 # 🌿 Guia 3 — Branches, Navegação e Fluxo Profissional
 
-Branches são um dos conceitos mais importantes do Git.
+Branches são um dos conceitos mais importantes — e mais poderosos — do Git.  
+Elas permitem criar **linhas paralelas de desenvolvimento**, testar ideias, corrigir bugs e desenvolver novas funcionalidades **sem tocar no código principal**.
 
-Elas permitem criar linhas paralelas de desenvolvimento sem bagunçar o código principal.
+Em outras palavras:
+
+> **Branches são como universos paralelos do seu projeto.**  
+> Você cria, modifica, experimenta… e só junta ao código principal quando estiver pronto.
+
+Neste guia, você vai aprender a trabalhar com branches de forma profissional: criar, navegar, mesclar, resolver conflitos e entender fluxos reais usados por equipes de desenvolvimento.
 
 ---
 
 ## 🌱 1. O que é uma branch (de verdade)
 
-Uma **branch** é uma linha do tempo independente dentro do seu projeto.
-
+Uma **branch** é uma linha do tempo independente dentro do seu projeto.  
 Ela permite que você desenvolva algo novo **sem mexer no código principal**.
 
 ### ✔ Analogia simples (e poderosa)
@@ -64,15 +69,19 @@ git branch
 
 ### ✔ Como interpretar
 
-- `* main` → a branch atual (onde você está trabalhando agora)  
-- `feature-login` → branch local existente  
-- `ajustes-css` → outra branch local  
+- \* main → a branch atual (onde você está trabalhando agora)
+- feature-login → branch local existente
+- ajustes-css → outra branch local
 
-> Importante:  
-> **`git branch` mostra apenas branches locais.**  
-> Branches remotas (do GitHub) aparecem com `git branch -r` ou `git fetch` + `git branch -a` (vamos ver isso mais adiante).
+Importante:
 
-Essa visualização é essencial para saber onde você está e quais branches existem no seu ambiente local.
+- git branch mostra apenas branches locais.  
+- Branches remotas (do GitHub) aparecem com:
+  - git branch -r → apenas branches remotas
+  - git branch -a → branches locais + remotas
+  - git fetch → atualiza a lista de branches remotas
+
+Saber visualizar suas branches é essencial para navegar com segurança e entender onde você está trabalhando dentro do projeto.
 
 ## 🆕 3. Criar uma branch — `git branch nome`
 
@@ -82,9 +91,7 @@ Para criar uma nova branch **sem trocar para ela**, use:
 git branch feature-login
 ```
 
-Se tudo der certo, **não aparece nenhuma saída** — comportamento normal do Git.
-
----
+Se tudo der certo, nenhuma saída aparece — esse é o comportamento normal do Git.
 
 ### ✔ Verificando se a branch foi criada
 
@@ -101,13 +108,15 @@ Saída típica:
 
 ### ✔ Como interpretar a saída
 
-- `feature-login` → a branch foi criada  
-- `* main` → você **ainda está na branch main**  
-- criar uma branch **não muda** a branch atual  
+- feature-login → a branch foi criada com sucesso
+- \* main → você ainda está na branch main
+- criar uma branch não muda a branch atual
 
-> Dica importante:  
-> Criar uma branch é como **abrir uma nova rua**, mas você ainda está parado na rua antiga.  
-> Para entrar na nova rua, você precisa usar `git switch` (veremos na próxima seção).
+### 💡 Dica importante
+
+Criar uma branch é como abrir uma nova rua, mas você ainda está parado na rua antiga.
+
+Para entrar na nova rua, você precisa usar git switch (na próxima seção).
 
 ## 🔄 4. Trocar de branch — `git switch` (recomendado)
 
