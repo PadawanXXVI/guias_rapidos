@@ -1,4 +1,4 @@
-# 🌿 Guia 3 — Branches, Navegação e Fluxo Profissional
+# 🌿 Guia 4 — Branches, Navegação e Fluxo Profissional
 
 Branches são um dos conceitos mais importantes — e mais poderosos — do Git.  
 Elas permitem criar **linhas paralelas de desenvolvimento**, testar ideias, corrigir bugs e desenvolver novas funcionalidades **sem tocar no código principal**.

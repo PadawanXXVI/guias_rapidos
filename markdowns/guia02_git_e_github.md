@@ -1,4 +1,4 @@
-# 📘 Guia 1 — Git Básico + Configurações
+# 📘 Guia 2 — Git Básico + Configurações
 
 Este guia apresenta Git do zero, com explicações diretas, exemplos reais e saídas de terminal comentadas.
 

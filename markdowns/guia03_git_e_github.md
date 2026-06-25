@@ -1,4 +1,4 @@
-# 📘 Guia 2 — Staging Area e Commits Avançados
+# 📘 Guia 3 — Staging Area e Commits Avançados
 
 Este guia aprofunda o funcionamento da **staging area**, explica como o Git registra mudanças e apresenta comandos essenciais para trabalhar com commits de forma mais avançada.
 

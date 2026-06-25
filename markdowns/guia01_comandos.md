@@ -1,4 +1,4 @@
-# 🧭 Guia rápido dos comandos essenciais do terminal (Linux / Git Bash)
+# 🧭 Guia 1 - Comandos essenciais do terminal (Linux / Git Bash)
 
 O **terminal** é uma janela onde você digita comandos em texto para controlar o computador.  
 Ele permite executar ações sem usar o mouse — o que torna o trabalho mais rápido, preciso e automatizável.
