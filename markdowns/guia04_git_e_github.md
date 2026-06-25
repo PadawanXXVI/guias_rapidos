@@ -684,7 +684,7 @@ Esse fluxo é usado em empresas, times grandes e projetos open source.
 
 ---
 
-## 🎯 Resumo do Guia 3
+## 🎯 Resumo do Guia 4
 
 Os comandos essenciais para trabalhar com branches no Git:
 
@@ -702,7 +702,7 @@ git pull                  → baixa e integra mudanças do remoto
 
 ---
 
-## 🎉 Fim do Guia 3 — Branches e Navegação
+## 🎉 Fim do Guia 4 — Branches e Navegação
 
 Agora você entende:
 

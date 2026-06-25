@@ -8,7 +8,7 @@ Nota: Este guia cobre o fluxo essencial do Git.
 
 Comandos como git add e git commit aparecem aqui em sua forma básica, pois fazem parte do funcionamento mínimo do Git.
 
-Para técnicas avançadas, como adicionar trechos específicos, revisar diferenças e editar commits, consulte o Guia 2 (Staging Area e Commits Avançados).
+Para técnicas avançadas, como adicionar trechos específicos, revisar diferenças e editar commits, consulte o Guia 3 (Staging Area e Commits Avançados).
 
 ---
 
@@ -273,7 +273,7 @@ Untracked files:
 - `Changes to be committed` → arquivo já está na staging area e será incluído no próximo commit
 - `working tree clean` → não há nada para adicionar, modificar ou commitar
 
-O `git status` é um dos comandos mais importantes do fluxo básico, pois mostra exatamente o que o Git sabe (ou não sabe) sobre seus arquivos. Ele será usado constantemente ao longo deste guia e também no [Guia 2](guia_git_e_github02.md), mas aqui você aprende apenas o uso essencial.
+O `git status` é um dos comandos mais importantes do fluxo básico, pois mostra exatamente o que o Git sabe (ou não sabe) sobre seus arquivos. Ele será usado constantemente ao longo deste guia e também no [Guia 3](../markdowns/guia03_git_e_github.md), mas aqui você aprende apenas o uso essencial.
 
 ---
 
@@ -313,7 +313,7 @@ A staging area funciona como uma bandeja de supermercado:
 
 Nota: Aqui você aprende apenas o uso básico de git add, suficiente para o fluxo essencial do Git.
 
-Técnicas avançadas, como, por exemplo, adicionar apenas partes de um arquivo (`git add -p`), são tratadas no [Guia 2](guia_git_e_github02.md), para evitar redundância entre os materiais.
+Técnicas avançadas, como, por exemplo, adicionar apenas partes de um arquivo (`git add -p`), são tratadas no [Guia 3](../markdowns/guia03_git_e_github.md), para evitar redundância entre os materiais.
 
 ---
 
@@ -349,7 +349,7 @@ Exemplo de saída:
 
 Nota: Aqui você aprende apenas o uso essencial de `git commit`.
 
-Técnicas avançadas, como editar o último commit (`--amend`) ou criar commits estruturados, são abordadas no [Guia 2](guia_git_e_github02.md), para manter este guia focado no fluxo básico.
+Técnicas avançadas, como editar o último commit (`--amend`) ou criar commits estruturados, são abordadas no [Guia 3](../markdowns/guia03_git_e_github.md), para manter este guia focado no fluxo básico.
 
 ---
 
@@ -609,7 +609,7 @@ git log --oneline
 
 ---
 
-## 🎉 Fim do Guia 1 — Git Básico + Configurações
+## 🎉 Fim do Guia 2 — Git Básico + Configurações
 
 Agora você entende:
 

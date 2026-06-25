@@ -321,7 +321,7 @@ git log --oneline       → revise o histórico rapidamente
 git revert <hash>       → desfaça commits com segurança
 ```
 
-## 🎉 Fim do Guia 2 — Staging Area e Commits Avançados
+## 🎉 Fim do Guia 3 — Staging Area e Commits Avançados
 
 Agora você entende:
 
